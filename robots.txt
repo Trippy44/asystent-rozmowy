@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://asystent-rozmowy.pl/sitemap.xml
