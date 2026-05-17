@@ -698,10 +698,26 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     /* Nav */
-    nav { padding: 12px 20px; }
+    nav {
+      padding: 10px 16px;
+      min-height: 56px;
+      flex-wrap: nowrap;
+    }
     .nav-links { display: none; }
     .hamburger { display: flex; }
-    .mobile-nav { display: block; }
+    .mobile-nav { display: block; top: 56px; }
+    .nav-logo {
+      font-size: 14px;
+      gap: 7px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 55vw;
+    }
+    .nav-dot { width: 8px; height: 8px; }
+    .nav-right { gap: 8px; flex-shrink: 0; }
+    .lang-toggle { padding: 3px; }
+    .lang-btn { font-size: 11px; padding: 3px 8px; }
 
     /* Hero */
     .hero { padding: 100px 20px 60px; }
@@ -741,6 +757,12 @@
     footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
   }
 
+  /* Shorten logo on tiny screens */
+  @media (max-width: 380px) {
+    .nav-logo-short { display: none; }
+    .nav-logo { font-size: 13px; }
+  }
+
   /* Hide heavy Three.js canvas on mobile */
   @media (max-width: 768px) {
     .desktop-only { display: none !important; }
@@ -763,7 +785,7 @@
 <nav>
   <div class="nav-logo">
     <div class="nav-dot"></div>
-    Asystent<span>-Rozmowy AI</span>
+    Asystent<span class="nav-logo-short">-Rozmowy</span><span> AI</span>
   </div>
   <ul class="nav-links">
     <li><a href="#features" data-pl="Funkcje" data-en="Features">Funkcje</a></li>
