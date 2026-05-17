@@ -569,13 +569,58 @@
   }
 
   /* ── PRICING ── */
-  .pricing-card {
-    max-width: 440px; margin: 0 auto;
+  /* Pricing toggle */
+  .pricing-toggle {
+    display: flex; align-items: center;
     background: var(--dark2);
-    border: 1px solid rgba(46,232,154,0.3);
-    border-radius: 24px; padding: 48px;
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 4px;
+    width: fit-content; margin: 0 auto 40px;
+    gap: 4px;
+  }
+  .pricing-tab {
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600; font-size: 14px;
+    cursor: pointer; border: none;
+    background: none; color: var(--gray);
+    transition: all 0.2s;
+    position: relative;
+  }
+  .pricing-tab.active {
+    background: var(--dark3);
+    color: var(--white);
+    border: 1px solid var(--border);
+  }
+  .pricing-tab .save-badge {
+    position: absolute; top: -8px; right: -8px;
+    background: var(--g); color: var(--dark);
+    font-size: 9px; font-weight: 700;
+    padding: 2px 6px; border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 24px; padding: 40px;
     text-align: center;
     position: relative; overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .pricing-card.featured {
+    border-color: rgba(46,232,154,0.4);
+    box-shadow: 0 0 40px rgba(46,232,154,0.08);
   }
 
   .pricing-card::before {
@@ -746,7 +791,8 @@
     .step-title { font-size: 16px; }
 
     /* Pricing */
-    .pricing-card { padding: 32px 24px; }
+    .pricing-cards { grid-template-columns: 1fr; gap: 16px; }
+    .pricing-card { padding: 28px 20px; }
     .pricing-price { font-size: 44px; }
     .pricing-features li { font-size: 14px; }
 
@@ -1064,47 +1110,100 @@
   <h2 class="section-title reveal" data-lang="pl">Prosty cennik</h2>
   <h2 class="section-title reveal" data-lang="en" style="display:none">Simple pricing</h2>
 
-  <div class="pricing-card reveal">
-    <div class="pricing-glow"></div>
-    <div class="pricing-badge">
-      <div class="badge-dot"></div>
-      Pro Plan
+  <div class="pricing-cards reveal">
+
+    <!-- MIESIĘCZNY -->
+    <div class="pricing-card">
+      <div class="pricing-glow"></div>
+      <div class="pricing-badge" style="margin-bottom:20px;">
+        <div class="badge-dot"></div>
+        <span data-lang="pl">Miesięczny</span>
+        <span data-lang="en" style="display:none">Monthly</span>
+      </div>
+      <div class="pricing-price">49 <span>PLN</span></div>
+      <div class="pricing-period" data-lang="pl">miesięcznie · anuluj kiedy chcesz</div>
+      <div class="pricing-period" data-lang="en" style="display:none">per month · cancel anytime</div>
+      <ul class="pricing-features" style="margin-top:28px;">
+        <li>
+          <div class="check">✓</div>
+          <span data-lang="pl">Nieograniczone nagrywanie głosu</span>
+          <span data-lang="en" style="display:none">Unlimited voice recording</span>
+        </li>
+        <li>
+          <div class="check">✓</div>
+          <span data-lang="pl">GPT-4o + Whisper</span>
+          <span data-lang="en" style="display:none">GPT-4o + Whisper</span>
+        </li>
+        <li>
+          <div class="check">✓</div>
+          <span data-lang="pl">Odpowiedzi metodą STAR</span>
+          <span data-lang="en" style="display:none">STAR method answers</span>
+        </li>
+        <li>
+          <div class="check">✓</div>
+          <span data-lang="pl">Dark & Light mode</span>
+          <span data-lang="en" style="display:none">Dark & Light mode</span>
+        </li>
+        <li>
+          <div class="check">✓</div>
+          <span data-lang="pl">Wsparcie techniczne</span>
+          <span data-lang="en" style="display:none">Technical support</span>
+        </li>
+      </ul>
+      <a href="https://buy.stripe.com/7sYbJ1aZq1zfeKX4fNaMU01" class="btn-secondary" style="width:100%; justify-content:center; margin-top:28px;">
+        <span data-lang="pl">Wybierz plan</span>
+        <span data-lang="en" style="display:none">Choose plan</span>
+        →
+      </a>
     </div>
-    <div class="pricing-price">49 <span>PLN</span></div>
-    <div class="pricing-period" data-lang="pl">miesięcznie · anuluj kiedy chcesz</div>
-    <div class="pricing-period" data-lang="en" style="display:none">per month · cancel anytime</div>
-    <ul class="pricing-features">
-      <li>
-        <div class="check">✓</div>
-        <span data-lang="pl">Nieograniczone nagrywanie głosu</span>
-        <span data-lang="en" style="display:none">Unlimited voice recording</span>
-      </li>
-      <li>
-        <div class="check">✓</div>
-        <span data-lang="pl">GPT-4o + Whisper (najnowsze modele)</span>
-        <span data-lang="en" style="display:none">GPT-4o + Whisper (latest models)</span>
-      </li>
-      <li>
-        <div class="check">✓</div>
-        <span data-lang="pl">Odpowiedzi metodą STAR</span>
-        <span data-lang="en" style="display:none">STAR method answers</span>
-      </li>
-      <li>
-        <div class="check">✓</div>
-        <span data-lang="pl">Dark & Light mode</span>
-        <span data-lang="en" style="display:none">Dark & Light mode</span>
-      </li>
-      <li>
-        <div class="check">✓</div>
-        <span data-lang="pl">Wsparcie techniczne</span>
-        <span data-lang="en" style="display:none">Technical support</span>
-      </li>
-    </ul>
-    <a href="#download" class="btn-primary" style="width:100%; justify-content:center;">
-      <span data-lang="pl">Zacznij teraz</span>
-      <span data-lang="en" style="display:none">Get started</span>
-      →
-    </a>
+
+    <!-- ROCZNY -->
+    <div class="pricing-card featured">
+      <div class="pricing-glow"></div>
+      <div style="position:absolute;top:16px;right:16px;background:var(--g);color:var(--dark);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;" data-lang="pl">OSZCZĘDZASZ 98 ZŁ</div>
+      <div style="position:absolute;top:16px;right:16px;background:var(--g);color:var(--dark);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;display:none;" data-lang="en">SAVE 98 PLN</div>
+      <div class="pricing-badge" style="margin-bottom:20px;background:rgba(46,232,154,0.15);border-color:rgba(46,232,154,0.4);">
+        <div class="badge-dot"></div>
+        <span data-lang="pl">Roczny · Najpopularniejszy</span>
+        <span data-lang="en" style="display:none">Annual · Most popular</span>
+      </div>
+      <div class="pricing-price">490 <span>PLN</span></div>
+      <div class="pricing-period" data-lang="pl">rocznie · <strong style="color:var(--g)">~40 zł/miesiąc</strong> · 2 miesiące gratis</div>
+      <div class="pricing-period" data-lang="en" style="display:none">per year · <strong style="color:var(--g)">~40 PLN/month</strong> · 2 months free</div>
+      <ul class="pricing-features" style="margin-top:28px;">
+        <li>
+          <div class="check">✓</div>
+          <span data-lang="pl">Nieograniczone nagrywanie głosu</span>
+          <span data-lang="en" style="display:none">Unlimited voice recording</span>
+        </li>
+        <li>
+          <div class="check">✓</div>
+          <span data-lang="pl">GPT-4o + Whisper</span>
+          <span data-lang="en" style="display:none">GPT-4o + Whisper</span>
+        </li>
+        <li>
+          <div class="check">✓</div>
+          <span data-lang="pl">Odpowiedzi metodą STAR</span>
+          <span data-lang="en" style="display:none">STAR method answers</span>
+        </li>
+        <li>
+          <div class="check">✓</div>
+          <span data-lang="pl">Dark & Light mode</span>
+          <span data-lang="en" style="display:none">Dark & Light mode</span>
+        </li>
+        <li>
+          <div class="check">✓</div>
+          <span data-lang="pl">Wsparcie techniczne</span>
+          <span data-lang="en" style="display:none">Technical support</span>
+        </li>
+      </ul>
+      <a href="https://buy.stripe.com/5kQaEXc3u2DjeKX7rZaMU02" class="btn-primary" style="width:100%; justify-content:center; margin-top:28px;">
+        <span data-lang="pl">Zacznij oszczędzać</span>
+        <span data-lang="en" style="display:none">Start saving</span>
+        →
+      </a>
+    </div>
+
   </div>
 </section>
 
