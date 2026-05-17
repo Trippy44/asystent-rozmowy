@@ -134,6 +134,74 @@
     font-weight: 600;
   }
 
+  /* ── HAMBURGER ── */
+  .nav-right {
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    width: 40px; height: 40px;
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer; gap: 5px;
+    transition: all 0.2s;
+  }
+
+  .hamburger span {
+    display: block; width: 18px; height: 1.5px;
+    background: var(--white);
+    transition: all 0.3s;
+    transform-origin: center;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* Mobile nav drawer */
+  .mobile-nav {
+    display: none;
+    position: fixed; top: 61px; left: 0; right: 0;
+    background: rgba(6,7,13,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+    z-index: 99;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.25s ease;
+    pointer-events: none;
+  }
+
+  .mobile-nav.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .mobile-nav ul {
+    list-style: none;
+    padding: 8px 0 16px;
+  }
+
+  .mobile-nav ul li a {
+    display: block;
+    padding: 14px 24px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+
+  .mobile-nav ul li:last-child a { border-bottom: none; }
+  .mobile-nav ul li a:active { color: var(--g); }
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -629,11 +697,60 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    nav { padding: 14px 20px; }
+    /* Nav */
+    nav { padding: 12px 20px; }
     .nav-links { display: none; }
-    .section { padding: 64px 20px; }
-    footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
-    .mockup-window { width: 300px; }
+    .hamburger { display: flex; }
+    .mobile-nav { display: block; }
+
+    /* Hero */
+    .hero { padding: 100px 20px 60px; }
+    .hero-badge { font-size: 12px; padding: 6px 14px; margin-bottom: 20px; }
+    h1 { font-size: clamp(32px, 10vw, 52px); margin-bottom: 18px; }
+    .hero-sub { font-size: 16px; margin-bottom: 32px; }
+    .hero-cta { gap: 10px; }
+    .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 14px; }
+    .hero-mockup { margin-top: 48px; }
+    .mockup-window { width: min(340px, 90vw); }
+
+    /* Sections */
+    .section { padding: 60px 20px; }
+    .section-sub { font-size: 16px; margin-bottom: 48px; }
+
+    /* Features grid - single column */
+    .features-grid { grid-template-columns: 1fr; gap: 14px; }
+    .feature-card { padding: 22px; }
+    .feature-icon { width: 42px; height: 42px; font-size: 20px; margin-bottom: 14px; }
+    .feature-title { font-size: 16px; }
+
+    /* Steps */
+    .step { gap: 16px; padding-bottom: 32px; }
+    .step-num { width: 40px; height: 40px; font-size: 14px; }
+    .step-line { left: 19px; top: 40px; }
+    .step-title { font-size: 16px; }
+
+    /* Pricing */
+    .pricing-card { padding: 32px 24px; }
+    .pricing-price { font-size: 44px; }
+    .pricing-features li { font-size: 14px; }
+
+    /* FAQ */
+    .faq-q { font-size: 15px; }
+
+    /* Footer */
+    footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+  }
+
+  /* Hide heavy Three.js canvas on mobile */
+  @media (max-width: 768px) {
+    .desktop-only { display: none !important; }
+  }
+
+  @media (max-width: 400px) {
+    h1 { font-size: 30px; }
+    .hero-cta { flex-direction: column; align-items: stretch; }
+    .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+    .pricing-price { font-size: 38px; }
   }
 
   /* Language content */
@@ -655,17 +772,33 @@
     <li><a href="#faq" data-pl="FAQ" data-en="FAQ">FAQ</a></li>
     <li><a href="blog/" data-pl="Blog" data-en="Blog">Blog</a></li>
   </ul>
-  <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('pl')">PL</button>
-    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('pl')">PL</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobile-nav">
+  <ul>
+    <li><a href="#features" onclick="closeMenu()" data-lang="pl">Funkcje</a><a href="#features" onclick="closeMenu()" data-lang="en" style="display:none">Features</a></li>
+    <li><a href="#how" onclick="closeMenu()" data-lang="pl">Jak działa</a><a href="#how" onclick="closeMenu()" data-lang="en" style="display:none">How it works</a></li>
+    <li><a href="#pricing" onclick="closeMenu()" data-lang="pl">Cennik</a><a href="#pricing" onclick="closeMenu()" data-lang="en" style="display:none">Pricing</a></li>
+    <li><a href="#faq" onclick="closeMenu()">FAQ</a></li>
+    <li><a href="blog/" onclick="closeMenu()" data-lang="pl">Blog</a><a href="blog/" onclick="closeMenu()" data-lang="en" style="display:none">Blog</a></li>
+  </ul>
+</div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <canvas id="hero-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.7;"></canvas>
+  <canvas id="hero-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.7;" class="desktop-only"></canvas>
 
   <div class="hero-badge">
     <div class="badge-dot"></div>
@@ -1053,7 +1186,7 @@
       <a href="blog/najczestsze-pytania-rekrutacyjne/" style="
         background:var(--dark2);border:1px solid var(--border);border-radius:14px;
         padding:20px 24px;text-align:left;text-decoration:none;
-        display:block;width:280px;transition:all 0.3s;color:var(--white);"
+        display:block;width:clamp(240px,80vw,280px);transition:all 0.3s;color:var(--white);"
         onmouseover="this.style.borderColor='rgba(46,232,154,0.4)';this.style.transform='translateY(-4px)'"
         onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
         <div style="background:rgba(46,232,154,0.1);border:1px solid rgba(46,232,154,0.2);color:var(--g);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:12px;">Rekrutacja</div>
@@ -1089,6 +1222,29 @@
 </footer>
 
 <script>
+  // ── Hamburger menu
+  function toggleMenu() {
+    const ham = document.getElementById('hamburger');
+    const nav = document.getElementById('mobile-nav');
+    ham.classList.toggle('open');
+    nav.classList.toggle('open');
+  }
+
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobile-nav').classList.remove('open');
+  }
+
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    const ham = document.getElementById('hamburger');
+    const nav = document.getElementById('mobile-nav');
+    if (!ham.contains(e.target) && !nav.contains(e.target)) {
+      ham.classList.remove('open');
+      nav.classList.remove('open');
+    }
+  });
+
   // ── Language toggle
   function setLang(lang) {
     document.querySelectorAll('[data-lang]').forEach(el => {
