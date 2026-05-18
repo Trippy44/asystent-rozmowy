@@ -1,6 +1,6 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
-Asystent-Rozmowy AI v13.1
+Asystent-Rozmowy AI v13.2
 """
 import flet as ft
 import base64, io, json, threading, wave, time, pathlib, struct, audioop
@@ -235,7 +235,7 @@ def main(page: ft.Page):
     st = {"token": "", "email": "", "name": "", "plan": "",
           "has_sub": False, "ok": False, "busy": False,
           "rec": False, "hist": [], "n": 0, "ctx_focused": False,
-          "cv_text": ""}
+          "cv_text": "", "must_change_password": False}
     page.bgcolor = T["BASE"]
 
     def show(screen):
@@ -342,6 +342,133 @@ def main(page: ft.Page):
             ], horizontal_alignment="center", expand=True),
         )
 
+    # ── CHANGE PASSWORD ───────────────────────────────────────────────────────────
+    def change_password_screen():
+        err   = ft.Text("", size=11, color=T["RED"], text_align="center")
+        ok_msg = ft.Text("", size=11, color=T["GREEN"], text_align="center")
+        spin  = ft.ProgressRing(color=T["GREEN"], bgcolor="transparent",
+                                 stroke_width=2, width=14, height=14, visible=False)
+        pf1 = ft.TextField(hint_text="Obecne haslo (tymczasowe)", password=True,
+                            can_reveal_password=True,
+                            border_color=T["EDGE_LO"], focused_border_color=T["GREEN"],
+                            color=T["WHITE"], hint_style=ft.TextStyle(color=T["DIM"]),
+                            bgcolor=T["L3"], border_radius=12, height=48,
+                            text_style=ft.TextStyle(size=13, color=T["WHITE"]),
+                            cursor_color=T["GREEN"])
+        pf2 = ft.TextField(hint_text="Nowe haslo (min. 8 znakow)", password=True,
+                            can_reveal_password=True,
+                            border_color=T["EDGE_LO"], focused_border_color=T["GREEN"],
+                            color=T["WHITE"], hint_style=ft.TextStyle(color=T["DIM"]),
+                            bgcolor=T["L3"], border_radius=12, height=48,
+                            text_style=ft.TextStyle(size=13, color=T["WHITE"]),
+                            cursor_color=T["GREEN"])
+        pf3 = ft.TextField(hint_text="Powtorz nowe haslo", password=True,
+                            can_reveal_password=True,
+                            border_color=T["EDGE_LO"], focused_border_color=T["GREEN"],
+                            color=T["WHITE"], hint_style=ft.TextStyle(color=T["DIM"]),
+                            bgcolor=T["L3"], border_radius=12, height=48,
+                            text_style=ft.TextStyle(size=13, color=T["WHITE"]),
+                            cursor_color=T["GREEN"])
+
+        def do_change(old_pw, new_pw):
+            data, code = api("POST", "/auth/change_password",
+                             {"old_password": old_pw, "new_password": new_pw},
+                             token=st["token"])
+            spin.visible = False
+            if code == 200:
+                st["must_change_password"] = False
+                ok_msg.value = "Haslo zmienione! Przekierowuje..."
+                err.value = ""
+                page.update()
+                import time; time.sleep(1.5)
+                show(app_screen() if st["has_sub"] else no_sub_screen())
+            else:
+                err.value = data.get("detail", f"Blad {code}")
+                page.update()
+
+        def submit(e):
+            old_pw = pf1.value.strip()
+            new_pw = pf2.value.strip()
+            rep_pw = pf3.value.strip()
+            if not old_pw or not new_pw or not rep_pw:
+                err.value = "Wypelnij wszystkie pola"; page.update(); return
+            if len(new_pw) < 8:
+                err.value = "Nowe haslo min. 8 znakow"; page.update(); return
+            if new_pw != rep_pw:
+                err.value = "Hasla nie sa takie same"; page.update(); return
+            spin.visible = True; err.value = ""; page.update()
+            threading.Thread(target=do_change, args=(old_pw, new_pw), daemon=True).start()
+
+        pf1.on_submit = lambda e: pf2.focus()
+        pf2.on_submit = lambda e: pf3.focus()
+        pf3.on_submit = submit
+
+        return ft.Container(bgcolor=T["BASE"], expand=True,
+            content=ft.Column([
+                ft.Container(expand=True),
+                ft.Column([
+                    ft.Row([
+                        ft.Container(width=10, height=10, bgcolor=T["GREEN"],
+                                      border_radius=3,
+                                      shadow=ft.BoxShadow(blur_radius=18,
+                                                           color=T["GREEN_G"],
+                                                           spread_radius=3)),
+                        ft.Container(width=10),
+                        ft.Text("Asystent", size=22, weight="bold", color=T["WHITE"]),
+                        ft.Text("-Rozmowy AI", size=22, weight="bold", color=T["GREEN"]),
+                    ], alignment="center", spacing=0),
+                ], horizontal_alignment="center"),
+                ft.Container(height=28),
+                ft.Container(
+                    content=ft.Column([
+                        ft.Container(height=1, bgcolor=T["EDGE_HI"],
+                                      border_radius=ft.border_radius.only(
+                                          top_left=16, top_right=16),
+                                      margin=ft.margin.only(bottom=18)),
+                        ft.Container(
+                            content=ft.Row([
+                                ft.Icon(ft.icons.LOCK_RESET, color=T["YELLOW"], size=16),
+                                ft.Container(width=8),
+                                ft.Text("Ustaw nowe haslo",
+                                        size=13, color=T["YELLOW"],
+                                        weight="bold"),
+                            ], spacing=0),
+                            bgcolor="#1A1400",
+                            border=ft.border.all(1, "#FFD16640"),
+                            border_radius=10,
+                            padding=ft.padding.symmetric(horizontal=14, vertical=10)),
+                        ft.Container(height=8),
+                        ft.Text("Twoje konto zostalo utworzone z haslem tymczasowym.\nUstaw wlasne haslo aby kontynuowac.",
+                                size=11, color=T["GRAY"], text_align="center"),
+                        ft.Container(height=16),
+                        pf1, ft.Container(height=8),
+                        pf2, ft.Container(height=8),
+                        pf3, ft.Container(height=12),
+                        ft.ElevatedButton(
+                            content=ft.Row([spin,
+                                            ft.Text("ZMIEN HASLO", weight="bold",
+                                                     color=T["BASE"], size=13)],
+                                            alignment="center", spacing=8),
+                            bgcolor=T["GREEN"], height=50,
+                            style=ft.ButtonStyle(
+                                shape=ft.RoundedRectangleBorder(radius=12),
+                                overlay_color="#00000020",
+                                shadow_color="transparent"),
+                            on_click=submit, expand=True),
+                        ft.Container(height=10),
+                        err, ok_msg,
+                    ], spacing=0, horizontal_alignment="center"),
+                    bgcolor=T["L1"], border_radius=18,
+                    padding=ft.padding.only(left=20, right=20, bottom=20),
+                    border=ft.border.all(1, T["EDGE_HI"]),
+                    shadow=ft.BoxShadow(blur_radius=40, color="#000000BB",
+                                         offset=ft.Offset(0, 10)),
+                    margin=ft.margin.symmetric(horizontal=20),
+                ),
+                ft.Container(expand=True),
+            ], horizontal_alignment="center", expand=True),
+        )
+
     # ── LOGIN ──────────────────────────────────────────────────────────────────
     def login_screen(msg=""):
         is_login = [True]
@@ -391,12 +518,19 @@ def main(page: ft.Page):
                 st.update({"token": data["token"], "email": data["email"],
                            "name": data.get("name", ""),
                            "plan": data.get("plan", "free"),
-                           "has_sub": data.get("has_sub", False), "ok": True})
+                           "has_sub": data.get("has_sub", False),
+                           "must_change_password": data.get("must_change_password", False),
+                           "ok": True})
                 save_token({"token": data["token"], "email": data["email"],
                             "name": data.get("name", ""),
                             "plan": data.get("plan", "free")})
                 spin.visible = False
-                show(app_screen() if st["has_sub"] else no_sub_screen())
+                if st["must_change_password"]:
+                    show(change_password_screen())
+                elif st["has_sub"]:
+                    show(app_screen())
+                else:
+                    show(no_sub_screen())
             else:
                 err.value = data.get("detail", f"Blad {code}")
                 err.color = T["RED"]
@@ -1386,8 +1520,14 @@ def main(page: ft.Page):
                            "name": data["name"],
                            "plan": data["plan"],
                            "has_sub": data["has_sub"],
+                           "must_change_password": data.get("must_change_password", False),
                            "ok": True})
-                show(app_screen() if st["has_sub"] else no_sub_screen())
+                if st["must_change_password"]:
+                    show(change_password_screen())
+                elif st["has_sub"]:
+                    show(app_screen())
+                else:
+                    show(no_sub_screen())
                 return
             clear_token()
         show(login_screen())
