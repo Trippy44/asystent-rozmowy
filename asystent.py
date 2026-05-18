@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Asystent-Rozmowy AI v13.2
+Asystent-Rozmowy AI v13.1
 """
 import flet as ft
 import base64, io, json, threading, wave, time, pathlib, struct, audioop
@@ -21,7 +21,7 @@ except ImportError:
 BACKEND      = "https://liquid-backend.onrender.com"
 VERSION_URL  = "https://raw.githubusercontent.com/Trippy44/asystent-rozmowy/main/version.json"
 DOWNLOAD_URL = "https://github.com/Trippy44/asystent-rozmowy/releases/latest"
-VERSION    = "13.1"
+VERSION    = "13.2"
 RATE       = 16000
 CHUNK      = 1024
 TOKEN_FILE = pathlib.Path.home() / ".asystent_token.json"
@@ -40,21 +40,6 @@ def load_token():
 def clear_token():
     try: TOKEN_FILE.unlink()
     except Exception: pass
-
-def check_update():
-    """Sprawdza czy jest nowsza wersja na GitHubie."""
-    try:
-        url = "https://raw.githubusercontent.com/Trippy44/asystent-rozmowy/main/version.json"
-        req = urllib.request.Request(url, headers={"User-Agent": "AsystentRozmowy"})
-        resp = urllib.request.urlopen(req, timeout=5)
-        data = json.loads(resp.read().decode())
-        latest = data.get("version", "0")
-        download_url = data.get("download_url", "")
-        if latest != VERSION:
-            return latest, download_url
-    except Exception:
-        pass
-    return None, None
 
 def check_update(current_version, on_update=None):
     """Sprawdza czy dostepna jest nowa wersja aplikacji."""
@@ -1559,7 +1544,12 @@ def main(page: ft.Page):
         padding=ft.padding.symmetric(horizontal=14, vertical=8))
 
     def check_update_ui():
-        latest, download_url = check_update()
+        result = [None, None]
+        def on_update(v, u):
+            result[0] = v
+            result[1] = u
+        check_update(VERSION, on_update)
+        latest, download_url = result
         if not latest or not download_url:
             return
         update_text.value = f"Nowa wersja v{latest} dostepna!"
