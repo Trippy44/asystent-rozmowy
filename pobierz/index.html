@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pobierz Asystent-Rozmowy AI</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --g:#2EE89A; --dark:#06070D; --dark2:#0C0D1A; --dark3:#181A30;
+    --white:#ECEEFF; --gray:#8890BB; --dim:#3E4266; --border:#1E2040;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:var(--dark); color:var(--white);
+    font-family:'DM Sans',sans-serif;
+    min-height:100vh;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    padding:24px; text-align:center;
+  }
+
+  .logo {
+    display:flex; align-items:center; justify-content:center;
+    gap:10px; margin-bottom:40px;
+  }
+  .logo-dot {
+    width:12px; height:12px;
+    background:var(--g); border-radius:3px;
+    box-shadow:0 0 20px var(--g);
+  }
+  .logo-text {
+    font-family:'Syne',sans-serif;
+    font-weight:800; font-size:20px; color:var(--white);
+  }
+  .logo-text span { color:var(--g); }
+
+  .card {
+    background:var(--dark2);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:48px 40px;
+    max-width:480px; width:100%;
+    position:relative; overflow:hidden;
+  }
+  .card::before {
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg,transparent,var(--g),transparent);
+  }
+
+  .checkmark {
+    width:72px; height:72px;
+    background:rgba(46,232,154,0.1);
+    border:1px solid rgba(46,232,154,0.3);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:32px; margin:0 auto 24px;
+  }
+
+  h1 {
+    font-family:'Syne',sans-serif;
+    font-weight:800; font-size:28px;
+    margin-bottom:12px; color:var(--white);
+  }
+
+  .subtitle {
+    color:var(--gray); font-size:15px;
+    line-height:1.6; margin-bottom:36px;
+  }
+
+  .download-btn {
+    display:inline-flex; align-items:center; justify-content:center;
+    gap:10px; width:100%;
+    background:var(--g); color:var(--dark);
+    border:none; border-radius:14px;
+    padding:18px 32px;
+    font-family:'Syne',sans-serif;
+    font-weight:700; font-size:16px;
+    cursor:pointer; text-decoration:none;
+    transition:all 0.2s;
+    box-shadow:0 0 40px rgba(46,232,154,0.3);
+  }
+  .download-btn:hover {
+    transform:translateY(-2px);
+    box-shadow:0 0 60px rgba(46,232,154,0.4);
+  }
+  .download-btn:active { transform:translateY(0); }
+
+  .download-icon { font-size:20px; }
+
+  .file-info {
+    margin-top:14px;
+    color:var(--dim); font-size:12px;
+    display:flex; align-items:center; justify-content:center; gap:12px;
+  }
+  .file-info span { display:flex; align-items:center; gap:4px; }
+
+  .divider {
+    border:none; border-top:1px solid var(--border);
+    margin:32px 0;
+  }
+
+  .steps {
+    text-align:left;
+  }
+  .steps-title {
+    font-family:'Syne',sans-serif;
+    font-weight:700; font-size:13px;
+    color:var(--gray); text-transform:uppercase;
+    letter-spacing:1px; margin-bottom:16px;
+  }
+  .step {
+    display:flex; gap:14px; align-items:flex-start;
+    margin-bottom:14px;
+  }
+  .step-num {
+    width:24px; height:24px; min-width:24px;
+    background:rgba(46,232,154,0.1);
+    border:1px solid rgba(46,232,154,0.3);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; font-weight:700; color:var(--g);
+    margin-top:1px;
+  }
+  .step-text {
+    font-size:13px; color:var(--gray); line-height:1.6;
+  }
+  .step-text strong { color:var(--white); }
+
+  .back-link {
+    margin-top:32px;
+    color:var(--dim); font-size:13px;
+    text-decoration:none; transition:color 0.2s;
+  }
+  .back-link:hover { color:var(--g); }
+
+  /* Auto-download indicator */
+  .auto-msg {
+    background:rgba(46,232,154,0.06);
+    border:1px solid rgba(46,232,154,0.2);
+    border-radius:10px; padding:12px 16px;
+    font-size:13px; color:var(--g);
+    margin-bottom:24px;
+    display:none;
+  }
+
+  @media (max-width:480px) {
+    .card { padding:32px 20px; }
+    h1 { font-size:24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="logo">
+  <div class="logo-dot"></div>
+  <div class="logo-text">Asystent<span>-Rozmowy AI</span></div>
+</div>
+
+<div class="card">
+  <div class="checkmark">✓</div>
+  <h1>Dziękujemy za zakup!</h1>
+  <p class="subtitle">
+    Twoja subskrypcja Pro jest aktywna. Pobierz aplikację i zaloguj się swoim emailem.
+  </p>
+
+  <div class="auto-msg" id="auto-msg">
+    ⬇️ Pobieranie rozpoczęło się automatycznie…
+  </div>
+
+  <a href="https://github.com/Trippy44/asystent-rozmowy/releases/download/v13.1/Asystent-Rozmowy-AI.exe"
+     class="download-btn" id="download-btn" download>
+    <span class="download-icon">⬇</span>
+    Pobierz Asystent-Rozmowy AI
+  </a>
+
+  <div class="file-info">
+    <span>🪟 Windows 10/11</span>
+    <span>·</span>
+    <span>📦 ~45 MB</span>
+    <span>·</span>
+    <span>v13.1</span>
+  </div>
+
+  <hr class="divider">
+
+  <div class="steps">
+    <div class="steps-title">Co dalej?</div>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">Uruchom pobrany plik <strong>Asystent-Rozmowy-AI.exe</strong></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">Zaloguj się emailem którego użyłeś przy zakupie</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">Gotowe — masz pełny dostęp <strong>Pro</strong> 🎉</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-text">Włącz <strong>Stereo Mix</strong> w ustawieniach dźwięku żeby asystent słyszał rekrutera</div>
+    </div>
+  </div>
+</div>
+
+<a href="/" class="back-link">← Wróć na stronę główną</a>
+
+<script>
+  // Auto-start download after 1 second
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      const url = "https://github.com/Trippy44/asystent-rozmowy/releases/download/v13.1/Asystent-Rozmowy-AI.exe";
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Asystent-Rozmowy-AI.exe';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      document.getElementById('auto-msg').style.display = 'block';
+    }, 1000);
+  });
+</script>
+
+</body>
+</html>
