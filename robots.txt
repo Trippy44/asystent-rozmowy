@@ -1,3 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /pobierz/
+Disallow: /admin/
+
 Sitemap: https://asystent-rozmowy.pl/sitemap.xml
