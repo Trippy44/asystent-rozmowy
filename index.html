@@ -60,11 +60,13 @@
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
 <style>
   :root {
     --g: #2EE89A; --g2: #0BB860; --dark: #06070D; --dark2: #0C0D1A;
-    --dark3: #181A30; --white: #ECEEFF; --gray: #8890BB; --dim: #3E4266; --border: #1E2040;
+    --dark3: #181A30; --white: #ECEEFF; --gray: #A0AACC; --dim: #3E4266; --border: #1E2040;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -239,6 +241,8 @@
   }
   @media (max-width: 768px) { .desktop-only { display: none !important; } }
 </style>
+  <meta name="theme-color" content="#06070D">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap" as="style">
 </head>
 <body class="lang-pl">
 
@@ -257,10 +261,10 @@
   </ul>
   <div class="nav-right">
     <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('pl')">PL</button>
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" onclick="setLang('pl')" aria-label="Zmień język na polski">PL</button>
+      <button class="lang-btn" onclick="setLang('en')" aria-label="Switch language to English">EN</button>
     </div>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Otwórz menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -557,7 +561,7 @@
   <h2 class="section-title reveal lang-en">Frequently asked questions</h2>
   <div class="faq reveal">
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
         <span><span class="lang-pl">Czy rekruter zobaczy że używam programu?</span><span class="lang-en">Will the recruiter see that I'm using the app?</span></span>
         <span class="faq-icon">+</span>
       </div>
@@ -565,7 +569,7 @@
       <div class="faq-a lang-en">No. The app runs locally as a separate window. The recruiter only sees you through the camera.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
         <span><span class="lang-pl">Czy działa z Teams i Zoom?</span><span class="lang-en">Does it work with Teams and Zoom?</span></span>
         <span class="faq-icon">+</span>
       </div>
@@ -573,7 +577,7 @@
       <div class="faq-a lang-en">Yes. It works with any video call application. You can record your microphone or system audio (Stereo Mix).</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
         <span><span class="lang-pl">Czy moje rozmowy są zapisywane?</span><span class="lang-en">Are my conversations recorded?</span></span>
         <span class="faq-icon">+</span>
       </div>
@@ -581,7 +585,7 @@
       <div class="faq-a lang-en">No. Audio is sent to Whisper only for transcription and is not stored anywhere.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
         <span><span class="lang-pl">Czy potrzebuję instalować Python?</span><span class="lang-en">Do I need to install Python?</span></span>
         <span class="faq-icon">+</span>
       </div>
@@ -589,7 +593,7 @@
       <div class="faq-a lang-en">No. You get a single .exe file that works immediately. No installation, no configuration.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
         <span><span class="lang-pl">Jak anulować subskrypcję?</span><span class="lang-en">How to cancel the subscription?</span></span>
         <span class="faq-icon">+</span>
       </div>
@@ -655,7 +659,7 @@
   const savedLang = localStorage.getItem('lang') || 'pl';
   setLang(savedLang);
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 <script>
 (function() {
   const canvas = document.getElementById('hero-canvas');
