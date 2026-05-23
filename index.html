@@ -38,26 +38,10 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Czy rekruter zobaczy że używam programu?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Nie. Program działa lokalnie na Twoim komputerze jako oddzielne okno. Rekruter widzi tylko Ciebie przez kamerę."}
-    },
-    {
-      "@type": "Question",
-      "name": "Czy działa z Teams i Zoom?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Tak. Działa z każdą aplikacją do rozmów wideo. Możesz nagrywać mikrofon lub dźwięk systemowy (Stereo Mix)."}
-    },
-    {
-      "@type": "Question",
-      "name": "Ile kosztuje asystent rekrutacyjny AI?",
-      "acceptedAnswer": {"@type": "Answer", "text": "49 PLN miesięcznie lub 490 PLN rocznie (2 miesiące gratis). Możesz anulować w dowolnym momencie."}
-    },
-    {
-      "@type": "Question",
-      "name": "Czy moje rozmowy są zapisywane?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Nie. Audio jest wysyłane do Whisper (OpenAI) tylko do transkrypcji i nie jest przechowywane."}
-    }
+    {"@type": "Question","name": "Czy rekruter zobaczy że używam programu?","acceptedAnswer": {"@type": "Answer", "text": "Nie. Program działa lokalnie na Twoim komputerze jako oddzielne okno. Rekruter widzi tylko Ciebie przez kamerę."}},
+    {"@type": "Question","name": "Czy działa z Teams i Zoom?","acceptedAnswer": {"@type": "Answer", "text": "Tak. Działa z każdą aplikacją do rozmów wideo. Możesz nagrywać mikrofon lub dźwięk systemowy (Stereo Mix)."}},
+    {"@type": "Question","name": "Ile kosztuje asystent rekrutacyjny AI?","acceptedAnswer": {"@type": "Answer", "text": "49 PLN miesięcznie lub 490 PLN rocznie (2 miesiące gratis). Możesz anulować w dowolnym momencie."}},
+    {"@type": "Question","name": "Czy mogę przetestować za darmo?","acceptedAnswer": {"@type": "Answer", "text": "Tak! Po rejestracji otrzymujesz 3 darmowe pytania AI bez podawania karty kredytowej."}}
   ]
 }
 </script>
@@ -65,6 +49,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
+<meta name="theme-color" content="#06070D">
 <style>
   :root {
     --g: #2EE89A; --g2: #0BB860; --dark: #06070D; --dark2: #0C0D1A;
@@ -73,15 +58,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body { background: var(--dark); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 48px;
-    background: rgba(6,7,13,0.85); backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(6,7,13,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
   .nav-logo { font-weight: 800; font-size: 18px; display: flex; align-items: center; gap: 10px; }
   .nav-dot { width: 10px; height: 10px; background: var(--g); border-radius: 3px; box-shadow: 0 0 16px var(--g); }
   .nav-logo span { color: var(--g); }
@@ -92,7 +69,7 @@
   .lang-btn { background: none; border: none; color: var(--gray); font-size: 12px; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s; }
   .lang-btn.active { background: var(--g); color: var(--dark); font-weight: 600; }
   .nav-right { display: flex; align-items: center; gap: 12px; }
-  .hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; width: 40px; height: 40px; background: var(--dark2); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; gap: 5px; transition: all 0.2s; }
+  .hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; width: 40px; height: 40px; background: var(--dark2); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; gap: 5px; }
   .hamburger span { display: block; width: 18px; height: 1.5px; background: var(--white); transition: all 0.3s; transform-origin: center; }
   .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
@@ -102,42 +79,13 @@
   .mobile-nav ul { list-style: none; padding: 8px 0 16px; }
   .mobile-nav ul li a { display: block; padding: 14px 24px; color: var(--white); text-decoration: none; font-size: 16px; font-weight: 600; border-bottom: 1px solid var(--border); }
   .mobile-nav ul li:last-child a { border-bottom: none; }
-
-  /* HERO */
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120px 48px 80px; position: relative; overflow: hidden; max-width: 1200px; margin: 0 auto; text-align: center; }
-  /* CSS Particles - lekka alternatywa dla Three.js */
-.hero-particles {
-    position: absolute; inset: 0;
-    overflow: hidden; pointer-events: none;
-}
-.hero-particles span {
-    position: absolute;
-    width: 2px; height: 2px;
-    background: var(--g);
-    border-radius: 50%;
-    opacity: 0;
-    animation: particle-float linear infinite;
-}
-@keyframes particle-float {
-    0%   { opacity: 0; transform: translateY(100%) translateX(0); }
-    10%  { opacity: 0.6; }
-    90%  { opacity: 0.3; }
-    100% { opacity: 0; transform: translateY(-100vh) translateX(30px); }
-}
-/* Orbs - CSS only */
-.hero-orb {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(46,232,154,0.15);
-    background: rgba(46,232,154,0.04);
-    animation: orb-float ease-in-out infinite;
-    pointer-events: none;
-}
-@keyframes orb-float {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50%       { transform: translateY(-20px) scale(1.02); }
-}
-.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(46,232,154,0.08) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 80% 80%, rgba(46,232,154,0.04) 0%, transparent 60%); pointer-events: none; }
+  .hero-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .hero-particles span { position: absolute; width: 2px; height: 2px; background: var(--g); border-radius: 50%; opacity: 0; animation: particle-float linear infinite; }
+  @keyframes particle-float { 0% { opacity: 0; transform: translateY(100%) translateX(0); } 10% { opacity: 0.6; } 90% { opacity: 0.3; } 100% { opacity: 0; transform: translateY(-100vh) translateX(30px); } }
+  .hero-orb { position: absolute; border-radius: 50%; border: 1px solid rgba(46,232,154,0.15); background: rgba(46,232,154,0.04); animation: orb-float ease-in-out infinite; pointer-events: none; }
+  @keyframes orb-float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-20px) scale(1.02); } }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(46,232,154,0.08) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 80% 80%, rgba(46,232,154,0.04) 0%, transparent 60%); pointer-events: none; }
   .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; opacity: 0.3; mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); }
   .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(46,232,154,0.08); border: 1px solid rgba(46,232,154,0.25); border-radius: 100px; padding: 8px 18px; font-size: 13px; color: var(--g); margin-bottom: 28px; animation: fadeUp 0.6s ease both; }
   .badge-dot { width: 6px; height: 6px; background: var(--g); border-radius: 50%; animation: pulse 2s infinite; }
@@ -150,8 +98,6 @@
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 48px rgba(46,232,154,0.4); }
   .btn-secondary { background: transparent; color: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 16px 32px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
   .btn-secondary:hover { border-color: var(--g); color: var(--g); }
-
-  /* MOCKUP */
   .hero-mockup { margin-top: 72px; position: relative; animation: fadeUp 0.8s 0.4s ease both; }
   .mockup-glow { position: absolute; inset: -40px; background: radial-gradient(ellipse, rgba(46,232,154,0.12), transparent 70%); pointer-events: none; }
   .mockup-window { width: 340px; background: var(--dark2); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.6); }
@@ -177,8 +123,6 @@
   .mockup-input { display: flex; gap: 8px; margin-top: 12px; align-items: center; }
   .mockup-field { flex: 1; background: var(--dark3); border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; font-size: 11px; color: var(--dim); }
   .mockup-mic { background: var(--dark3); border: 1px solid var(--border); border-radius: 10px; padding: 8px 10px; color: var(--g); font-size: 14px; display: flex; align-items: center; }
-
-  /* SECTIONS */
   .section { padding: 96px 48px; max-width: 860px; margin: 0 auto; box-sizing: border-box; }
   .section-label { font-size: 12px; font-weight: 600; color: var(--g); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
   .section-title { font-weight: 800; font-size: clamp(28px, 4vw, 48px); margin-bottom: 16px; line-height: 1.1; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; }
@@ -191,8 +135,6 @@
   .feature-icon { width: 48px; height: 48px; background: rgba(46,232,154,0.1); border: 1px solid rgba(46,232,154,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 18px; }
   .feature-title { font-weight: 700; font-size: 18px; margin-bottom: 10px; }
   .feature-desc { color: var(--gray); font-size: 14px; line-height: 1.65; }
-
-  /* STEPS */
   .steps { display: flex; flex-direction: column; gap: 0; max-width: 680px; }
   .step { display: flex; gap: 24px; position: relative; padding-bottom: 40px; }
   .step:last-child { padding-bottom: 0; }
@@ -202,8 +144,6 @@
   .step-content { padding-top: 10px; }
   .step-title { font-weight: 700; font-size: 18px; margin-bottom: 8px; }
   .step-desc { color: var(--gray); font-size: 14px; line-height: 1.65; }
-
-  /* PRICING */
   .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 760px; margin: 0 auto; }
   .pricing-card { background: var(--dark2); border: 1px solid var(--border); border-radius: 24px; padding: 40px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s; }
   .pricing-card.featured { border-color: rgba(46,232,154,0.4); box-shadow: 0 0 40px rgba(46,232,154,0.08); }
@@ -216,8 +156,6 @@
   .pricing-features { list-style: none; margin-bottom: 36px; display: flex; flex-direction: column; gap: 12px; text-align: left; }
   .pricing-features li { display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--white); }
   .check { width: 20px; height: 20px; flex-shrink: 0; background: rgba(46,232,154,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--g); font-size: 11px; }
-
-  /* FAQ */
   .faq { max-width: 680px; }
   .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
   .faq-q { font-weight: 600; font-size: 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; user-select: none; }
@@ -225,24 +163,16 @@
   .faq-item.open .faq-icon { transform: rotate(45deg); }
   .faq-a { color: var(--gray); font-size: 14px; line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s; }
   .faq-item.open .faq-a { max-height: 200px; padding-top: 12px; }
-
-  /* FOOTER */
   footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
   .footer-logo { font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; }
   .footer-logo span { color: var(--g); }
   .footer-copy { color: var(--dim); font-size: 13px; }
-
-  /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* LANGUAGE - kluczowa poprawka */
   .lang-pl, .lang-en { }
   body.lang-en .lang-pl { display: none !important; }
   body.lang-pl .lang-en { display: none !important; }
-
-  /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 10px 16px; min-height: 56px; flex-wrap: nowrap; }
     .nav-links { display: none; }
@@ -267,6 +197,7 @@
     .pricing-card { padding: 28px 20px; }
     .pricing-price { font-size: 44px; }
     footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
+    .free-banner { flex-direction: column; text-align: center; }
   }
   @media (max-width: 400px) {
     h1 { font-size: 30px; }
@@ -275,8 +206,6 @@
   }
   @media (max-width: 768px) { .desktop-only { display: none !important; } }
 </style>
-  <meta name="theme-color" content="#06070D">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap" as="style">
 </head>
 <body class="lang-pl">
 
@@ -333,6 +262,7 @@
   <div class="hero-orb desktop-only" style="width:300px;height:300px;top:10%;left:-100px;animation-duration:6s;animation-delay:0s;"></div>
   <div class="hero-orb desktop-only" style="width:200px;height:200px;top:50%;right:-60px;animation-duration:8s;animation-delay:2s;"></div>
   <div class="hero-orb desktop-only" style="width:150px;height:150px;bottom:10%;left:20%;animation-duration:7s;animation-delay:1s;"></div>
+
   <div class="hero-badge">
     <div class="badge-dot"></div>
     <span class="lang-pl">AI dla rekrutacji w czasie rzeczywistym</span>
@@ -346,9 +276,9 @@
   <p class="hero-sub lang-en">The assistant listens to the recruiter and suggests a ready answer tailored to your CV in 2 seconds. You read — you win.</p>
 
   <div class="hero-cta">
-   <a href="/rejestracja/" class="btn-primary">
-      <span class="lang-pl">Zacznij teraz</span>
-      <span class="lang-en">Get started</span>
+    <a href="/rejestracja/" class="btn-primary">
+      <span class="lang-pl">Wypróbuj za darmo</span>
+      <span class="lang-en">Try for free</span>
       →
     </a>
     <a href="#how" class="btn-secondary">
@@ -356,6 +286,10 @@
       <span class="lang-en">How it works?</span>
     </a>
   </div>
+  <p style="margin-top:16px;font-size:13px;color:var(--dim);animation:fadeUp 0.6s 0.4s ease both;">
+    <span class="lang-pl">✓ 3 pytania za darmo &nbsp;·&nbsp; bez karty kredytowej &nbsp;·&nbsp; rejestracja w 30 sekund</span>
+    <span class="lang-en">✓ 3 free questions &nbsp;·&nbsp; no credit card &nbsp;·&nbsp; sign up in 30 seconds</span>
+  </p>
 
   <div class="hero-mockup">
     <div class="mockup-glow"></div>
@@ -395,60 +329,14 @@
   <p class="section-sub reveal lang-pl">Jeden program, trzy tryby pracy — zawsze masz gotową odpowiedź.</p>
   <p class="section-sub reveal lang-en">One app, three modes — always have the perfect answer ready.</p>
   <div class="features-grid">
-    <div class="feature-card reveal">
-      <div class="feature-icon">🎙</div>
-      <div class="feature-title lang-pl">Nagrywanie głosu</div>
-      <div class="feature-title lang-en">Voice Recording</div>
-      <div class="feature-desc lang-pl">Wciśnij i trzymaj przycisk MIC gdy rekruter mówi. Puść — AI transkrybuje i generuje odpowiedź w ~2 sekundy.</div>
-      <div class="feature-desc lang-en">Hold the MIC button while the recruiter speaks. Release — AI transcribes and generates an answer in ~2 seconds.</div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">⚡</div>
-      <div class="feature-title lang-pl">Szybkie podpowiedzi</div>
-      <div class="feature-title lang-en">Quick Suggestions</div>
-      <div class="feature-desc lang-pl">Gotowe odpowiedzi na najczęstsze pytania — mocne strony, metoda STAR, motywacja. Jeden klik i Enter.</div>
-      <div class="feature-desc lang-en">Ready answers for the most common questions — strengths, STAR method, motivation. One click and Enter.</div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🔒</div>
-      <div class="feature-title lang-pl">Bezpieczeństwo</div>
-      <div class="feature-title lang-en">Security</div>
-      <div class="feature-desc lang-pl">Audio wysyłane tylko do Whisper (OpenAI). Nic nie jest zapisywane. Działa lokalnie na Twoim komputerze.</div>
-      <div class="feature-desc lang-en">Audio sent only to Whisper (OpenAI). Nothing is stored. Runs locally on your computer.</div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">📌</div>
-      <div class="feature-title lang-pl">Zawsze na wierzchu</div>
-      <div class="feature-title lang-en">Always on Top</div>
-      <div class="feature-desc lang-pl">Okno asystenta jest zawsze widoczne nad Teams i Zoom. Czytasz odpowiedź nie ruszając wzrokiem od rozmowy.</div>
-      <div class="feature-desc lang-en">The assistant window stays on top of Teams and Zoom. Read answers without taking your eyes off the interview.</div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🌙</div>
-      <div class="feature-title">Dark / Light mode</div>
-      <div class="feature-desc lang-pl">Elegancki ciemny motyw lub jasny — wybierz co pasuje do Twojego ekranu i warunków oświetlenia.</div>
-      <div class="feature-desc lang-en">Elegant dark theme or light — choose what fits your screen and lighting conditions.</div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🤖</div>
-      <div class="feature-title">GPT-4o + Whisper</div>
-      <div class="feature-desc lang-pl">Najnowszy model OpenAI. Odpowiedzi metodą STAR, w języku polskim lub angielskim — zależnie od pytania.</div>
-      <div class="feature-desc lang-en">Latest OpenAI model. STAR method answers in Polish or English — depending on the question language.</div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">📄</div>
-      <div class="feature-title lang-pl">Upload CV</div>
-      <div class="feature-title lang-en">CV Upload</div>
-      <div class="feature-desc lang-pl">Wczytaj swoje CV w formacie PDF lub TXT. AI automatycznie dopasowuje odpowiedzi do Twojego doświadczenia.</div>
-      <div class="feature-desc lang-en">Load your CV in PDF or TXT format. AI automatically tailors answers to your experience and skills.</div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🎚️</div>
-      <div class="feature-title lang-pl">Wskaźnik głośności</div>
-      <div class="feature-title lang-en">Volume Indicator</div>
-      <div class="feature-desc lang-pl">Wizualny wskaźnik poziomu dźwięku podczas nagrywania — zawsze wiesz czy mikrofon prawidłowo rejestruje głos.</div>
-      <div class="feature-desc lang-en">Visual volume level indicator during recording — always know if the microphone is picking up the voice.</div>
-    </div>
+    <div class="feature-card reveal"><div class="feature-icon">🎙</div><div class="feature-title lang-pl">Nagrywanie głosu</div><div class="feature-title lang-en">Voice Recording</div><div class="feature-desc lang-pl">Wciśnij i trzymaj przycisk MIC gdy rekruter mówi. Puść — AI transkrybuje i generuje odpowiedź w ~2 sekundy.</div><div class="feature-desc lang-en">Hold the MIC button while the recruiter speaks. Release — AI transcribes and generates an answer in ~2 seconds.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">⚡</div><div class="feature-title lang-pl">Szybkie podpowiedzi</div><div class="feature-title lang-en">Quick Suggestions</div><div class="feature-desc lang-pl">Gotowe odpowiedzi na najczęstsze pytania — mocne strony, metoda STAR, motywacja. Jeden klik i Enter.</div><div class="feature-desc lang-en">Ready answers for the most common questions — strengths, STAR method, motivation. One click and Enter.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">🔒</div><div class="feature-title lang-pl">Bezpieczeństwo</div><div class="feature-title lang-en">Security</div><div class="feature-desc lang-pl">Audio wysyłane tylko do Whisper (OpenAI). Nic nie jest zapisywane. Działa lokalnie na Twoim komputerze.</div><div class="feature-desc lang-en">Audio sent only to Whisper (OpenAI). Nothing is stored. Runs locally on your computer.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">📌</div><div class="feature-title lang-pl">Zawsze na wierzchu</div><div class="feature-title lang-en">Always on Top</div><div class="feature-desc lang-pl">Okno asystenta jest zawsze widoczne nad Teams i Zoom. Czytasz odpowiedź nie ruszając wzrokiem od rozmowy.</div><div class="feature-desc lang-en">The assistant window stays on top of Teams and Zoom. Read answers without taking your eyes off the interview.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">🌙</div><div class="feature-title">Dark / Light mode</div><div class="feature-desc lang-pl">Elegancki ciemny motyw lub jasny — wybierz co pasuje do Twojego ekranu i warunków oświetlenia.</div><div class="feature-desc lang-en">Elegant dark theme or light — choose what fits your screen and lighting conditions.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">🤖</div><div class="feature-title">GPT-4o + Whisper</div><div class="feature-desc lang-pl">Najnowszy model OpenAI. Odpowiedzi metodą STAR, w języku polskim lub angielskim — zależnie od pytania.</div><div class="feature-desc lang-en">Latest OpenAI model. STAR method answers in Polish or English — depending on the question language.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">📄</div><div class="feature-title lang-pl">Upload CV</div><div class="feature-title lang-en">CV Upload</div><div class="feature-desc lang-pl">Wczytaj swoje CV w formacie PDF lub TXT. AI automatycznie dopasowuje odpowiedzi do Twojego doświadczenia.</div><div class="feature-desc lang-en">Load your CV in PDF or TXT format. AI automatically tailors answers to your experience and skills.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">🎚️</div><div class="feature-title lang-pl">Wskaźnik głośności</div><div class="feature-title lang-en">Volume Indicator</div><div class="feature-desc lang-pl">Wizualny wskaźnik poziomu dźwięku podczas nagrywania — zawsze wiesz czy mikrofon prawidłowo rejestruje głos.</div><div class="feature-desc lang-en">Visual volume level indicator during recording — always know if the microphone is picking up the voice.</div></div>
   </div>
 </section>
 
@@ -459,35 +347,9 @@
   <h2 class="section-title reveal lang-pl">Trzy kroki<br>do sukcesu</h2>
   <h2 class="section-title reveal lang-en">Three steps<br>to success</h2>
   <div class="steps">
-    <div class="step reveal">
-      <div class="step-line"></div>
-      <div class="step-num">1</div>
-      <div class="step-content">
-        <div class="step-title lang-pl">Pobierz i zaloguj się</div>
-        <div class="step-title lang-en">Download and log in</div>
-        <div class="step-desc lang-pl">Pobierz plik .exe, uruchom i zaloguj się emailem. Token zapisuje się lokalnie — następnym razem wchodzisz od razu.</div>
-        <div class="step-desc lang-en">Download the .exe file, run it and log in with your email. Token is saved locally — next time you're in immediately.</div>
-      </div>
-    </div>
-    <div class="step reveal">
-      <div class="step-line"></div>
-      <div class="step-num">2</div>
-      <div class="step-content">
-        <div class="step-title lang-pl">Włącz podczas rozmowy</div>
-        <div class="step-title lang-en">Launch during interview</div>
-        <div class="step-desc lang-pl">Otwórz asystenta obok Teams lub Zoom. Okno jest zawsze na wierzchu i nie przeszkadza w rozmowie.</div>
-        <div class="step-desc lang-en">Open the assistant next to Teams or Zoom. The window stays on top and doesn't interfere with the interview.</div>
-      </div>
-    </div>
-    <div class="step reveal">
-      <div class="step-num">3</div>
-      <div class="step-content">
-        <div class="step-title lang-pl">Trzymaj MIC i czytaj</div>
-        <div class="step-title lang-en">Hold MIC and read</div>
-        <div class="step-desc lang-pl">Gdy rekruter zadaje pytanie — wciśnij SPACJĘ lub przycisk MIC. Puść gdy skończy. AI odpowiada w ~2 sekundy.</div>
-        <div class="step-desc lang-en">When the recruiter asks a question — press SPACE or the MIC button. Release when they finish. AI responds in ~2 seconds.</div>
-      </div>
-    </div>
+    <div class="step reveal"><div class="step-line"></div><div class="step-num">1</div><div class="step-content"><div class="step-title lang-pl">Zarejestruj się za darmo</div><div class="step-title lang-en">Sign up for free</div><div class="step-desc lang-pl">Załóż konto na asystent-rozmowy.pl/rejestracja — bez karty kredytowej. Pobierz plik .exe i zaloguj się emailem.</div><div class="step-desc lang-en">Create an account at asystent-rozmowy.pl/rejestracja — no credit card needed. Download the .exe and log in.</div></div></div>
+    <div class="step reveal"><div class="step-line"></div><div class="step-num">2</div><div class="step-content"><div class="step-title lang-pl">Włącz podczas rozmowy</div><div class="step-title lang-en">Launch during interview</div><div class="step-desc lang-pl">Otwórz asystenta obok Teams lub Zoom. Okno jest zawsze na wierzchu i nie przeszkadza w rozmowie.</div><div class="step-desc lang-en">Open the assistant next to Teams or Zoom. The window stays on top and doesn't interfere with the interview.</div></div></div>
+    <div class="step reveal"><div class="step-num">3</div><div class="step-content"><div class="step-title lang-pl">Trzymaj MIC i czytaj</div><div class="step-title lang-en">Hold MIC and read</div><div class="step-desc lang-pl">Gdy rekruter zadaje pytanie — wciśnij SPACJĘ lub przycisk MIC. Puść gdy skończy. AI odpowiada w ~2 sekundy.</div><div class="step-desc lang-en">When the recruiter asks a question — press SPACE or the MIC button. Release when they finish. AI responds in ~2 seconds.</div></div></div>
   </div>
 </section>
 
@@ -497,13 +359,25 @@
   <p class="section-label lang-en">Pricing</p>
   <h2 class="section-title reveal lang-pl">Prosty cennik</h2>
   <h2 class="section-title reveal lang-en">Simple pricing</h2>
+
+  <!-- Free trial banner -->
+  <div class="free-banner reveal" style="background:rgba(46,232,154,0.06);border:1px solid rgba(46,232,154,0.2);border-radius:16px;padding:20px 28px;max-width:760px;margin:0 auto 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div>
+      <p class="lang-pl" style="font-weight:700;font-size:15px;color:var(--white);margin-bottom:4px;">🎁 Zacznij za darmo — bez karty kredytowej</p>
+      <p class="lang-en" style="font-weight:700;font-size:15px;color:var(--white);margin-bottom:4px;">🎁 Start for free — no credit card needed</p>
+      <p class="lang-pl" style="font-size:13px;color:var(--gray);">3 darmowe pytania AI · zarejestruj się i pobierz aplikację</p>
+      <p class="lang-en" style="font-size:13px;color:var(--gray);">3 free AI questions · sign up and download the app</p>
+    </div>
+    <a href="/rejestracja/" style="background:var(--g);color:var(--dark);border-radius:10px;padding:12px 24px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap;flex-shrink:0;display:inline-block;">
+      <span class="lang-pl">Zarejestruj się →</span>
+      <span class="lang-en">Sign up →</span>
+    </a>
+  </div>
+
   <div class="pricing-cards reveal">
     <div class="pricing-card">
       <div class="pricing-glow"></div>
-      <div class="pricing-badge" style="margin-bottom:20px;">
-        <div class="badge-dot"></div>
-        <span class="lang-pl">Miesięczny</span><span class="lang-en">Monthly</span>
-      </div>
+      <div class="pricing-badge" style="margin-bottom:20px;"><div class="badge-dot"></div><span class="lang-pl">Miesięczny</span><span class="lang-en">Monthly</span></div>
       <div class="pricing-price">49 <span>PLN</span></div>
       <div class="pricing-period lang-pl">miesięcznie · anuluj kiedy chcesz</div>
       <div class="pricing-period lang-en">per month · cancel anytime</div>
@@ -514,19 +388,12 @@
         <li><div class="check">✓</div><span>Dark & Light mode</span></li>
         <li><div class="check">✓</div><span class="lang-pl">Wsparcie techniczne</span><span class="lang-en">Technical support</span></li>
       </ul>
-      <a href="https://buy.stripe.com/7sYbJ1aZq1zfeKX4fNaMU01" class="btn-secondary" style="width:100%;justify-content:center;margin-top:28px;">
-        <span class="lang-pl">Wybierz plan</span><span class="lang-en">Choose plan</span> →
-      </a>
+      <a href="https://buy.stripe.com/7sYbJ1aZq1zfeKX4fNaMU01" class="btn-secondary" style="width:100%;justify-content:center;margin-top:28px;"><span class="lang-pl">Wybierz plan</span><span class="lang-en">Choose plan</span> →</a>
     </div>
     <div class="pricing-card featured">
       <div class="pricing-glow"></div>
-      <div style="position:absolute;top:16px;right:16px;background:var(--g);color:var(--dark);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;">
-        <span class="lang-pl">OSZCZĘDZASZ 98 ZŁ</span><span class="lang-en">SAVE 98 PLN</span>
-      </div>
-      <div class="pricing-badge" style="margin-bottom:20px;background:rgba(46,232,154,0.15);border-color:rgba(46,232,154,0.4);">
-        <div class="badge-dot"></div>
-        <span class="lang-pl">Roczny · Najpopularniejszy</span><span class="lang-en">Annual · Most popular</span>
-      </div>
+      <div style="position:absolute;top:16px;right:16px;background:var(--g);color:var(--dark);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;"><span class="lang-pl">OSZCZĘDZASZ 98 ZŁ</span><span class="lang-en">SAVE 98 PLN</span></div>
+      <div class="pricing-badge" style="margin-bottom:20px;background:rgba(46,232,154,0.15);border-color:rgba(46,232,154,0.4);"><div class="badge-dot"></div><span class="lang-pl">Roczny · Najpopularniejszy</span><span class="lang-en">Annual · Most popular</span></div>
       <div class="pricing-price">490 <span>PLN</span></div>
       <div class="pricing-period lang-pl">rocznie · <strong style="color:var(--g)">~40 zł/miesiąc</strong> · 2 miesiące gratis</div>
       <div class="pricing-period lang-en">per year · <strong style="color:var(--g)">~40 PLN/month</strong> · 2 months free</div>
@@ -537,9 +404,7 @@
         <li><div class="check">✓</div><span>Dark & Light mode</span></li>
         <li><div class="check">✓</div><span class="lang-pl">Wsparcie techniczne</span><span class="lang-en">Technical support</span></li>
       </ul>
-      <a href="https://buy.stripe.com/5kQaEXc3u2DjeKX7rZaMU02" class="btn-primary" style="width:100%;justify-content:center;margin-top:28px;">
-        <span class="lang-pl">Zacznij oszczędzać</span><span class="lang-en">Start saving</span> →
-      </a>
+      <a href="https://buy.stripe.com/5kQaEXc3u2DjeKX7rZaMU02" class="btn-primary" style="width:100%;justify-content:center;margin-top:28px;"><span class="lang-pl">Zacznij oszczędzać</span><span class="lang-en">Start saving</span> →</a>
     </div>
   </div>
 </section>
@@ -553,51 +418,11 @@
   <p class="section-sub reveal lang-pl">Stereo Mix pozwala nagrywać dźwięk systemowy — dzięki temu asystent słyszy rekrutera bez potrzeby używania drugiego mikrofonu.</p>
   <p class="section-sub reveal lang-en">Stereo Mix lets you record system audio — so the assistant hears the recruiter without needing a second microphone.</p>
   <div class="steps" style="max-width:720px;margin:0 auto;">
-    <div class="step reveal">
-      <div class="step-line"></div><div class="step-num">1</div>
-      <div class="step-content">
-        <div class="step-title lang-pl">Otwórz ustawienia dźwięku</div>
-        <div class="step-title lang-en">Open Sound settings</div>
-        <div class="step-desc lang-pl">Kliknij prawym przyciskiem myszy na ikonę głośnika w pasku zadań. Wybierz <strong style="color:var(--white)">„Dźwięki"</strong>.</div>
-        <div class="step-desc lang-en">Right-click the speaker icon in the taskbar. Select <strong style="color:var(--white)">"Sounds"</strong>.</div>
-      </div>
-    </div>
-    <div class="step reveal">
-      <div class="step-line"></div><div class="step-num">2</div>
-      <div class="step-content">
-        <div class="step-title lang-pl">Przejdź do zakładki „Nagrywanie"</div>
-        <div class="step-title lang-en">Go to the "Recording" tab</div>
-        <div class="step-desc lang-pl">Kliknij zakładkę <strong style="color:var(--white)">„Nagrywanie"</strong>. Jeśli nie widzisz Stereo Mix — kliknij PPM w pustym miejscu i zaznacz <strong style="color:var(--white)">„Pokaż wyłączone urządzenia"</strong>.</div>
-        <div class="step-desc lang-en">Click the <strong style="color:var(--white)">"Recording"</strong> tab. If Stereo Mix is not visible — right-click on an empty area and check <strong style="color:var(--white)">"Show Disabled Devices"</strong>.</div>
-      </div>
-    </div>
-    <div class="step reveal">
-      <div class="step-line"></div><div class="step-num">3</div>
-      <div class="step-content">
-        <div class="step-title lang-pl">Włącz Stereo Mix</div>
-        <div class="step-title lang-en">Enable Stereo Mix</div>
-        <div class="step-desc lang-pl">Kliknij PPM na <strong style="color:var(--white)">„Stereo Mix"</strong> → <strong style="color:var(--white)">„Włącz"</strong>, potem <strong style="color:var(--white)">„Ustaw jako domyślne urządzenie"</strong>.</div>
-        <div class="step-desc lang-en">Right-click <strong style="color:var(--white)">"Stereo Mix"</strong> → <strong style="color:var(--white)">"Enable"</strong>, then <strong style="color:var(--white)">"Set as Default Device"</strong>.</div>
-      </div>
-    </div>
-    <div class="step reveal">
-      <div class="step-line"></div><div class="step-num">4</div>
-      <div class="step-content">
-        <div class="step-title lang-pl">Wybierz w asystencie</div>
-        <div class="step-title lang-en">Select in the assistant</div>
-        <div class="step-desc lang-pl">W rozwijanej liście urządzeń audio wybierz <strong style="color:var(--g)">„Stereo Mix"</strong>. Asystent będzie słyszał wszystko przez głośniki.</div>
-        <div class="step-desc lang-en">In the audio device dropdown, select <strong style="color:var(--g)">"Stereo Mix"</strong>. The assistant will hear everything through your speakers.</div>
-      </div>
-    </div>
-    <div class="step reveal">
-      <div class="step-num">5</div>
-      <div class="step-content">
-        <div class="step-title lang-pl">Nie masz Stereo Mix? Użyj VB-Cable</div>
-        <div class="step-title lang-en">No Stereo Mix? Use VB-Cable</div>
-        <div class="step-desc lang-pl">Pobierz darmowy <strong style="color:var(--white)">VB-Cable</strong> ze strony <a href="https://vb-audio.com/Cable/" target="_blank" rel="noopener" style="color:var(--g);text-decoration:none;">vb-audio.com/Cable</a> — instaluje się w 30 sekund.</div>
-        <div class="step-desc lang-en">Download free <strong style="color:var(--white)">VB-Cable</strong> from <a href="https://vb-audio.com/Cable/" target="_blank" rel="noopener" style="color:var(--g);text-decoration:none;">vb-audio.com/Cable</a> — installs in 30 seconds.</div>
-      </div>
-    </div>
+    <div class="step reveal"><div class="step-line"></div><div class="step-num">1</div><div class="step-content"><div class="step-title lang-pl">Otwórz ustawienia dźwięku</div><div class="step-title lang-en">Open Sound settings</div><div class="step-desc lang-pl">Kliknij prawym przyciskiem myszy na ikonę głośnika w pasku zadań. Wybierz <strong style="color:var(--white)">"Dźwięki"</strong>.</div><div class="step-desc lang-en">Right-click the speaker icon in the taskbar. Select <strong style="color:var(--white)">"Sounds"</strong>.</div></div></div>
+    <div class="step reveal"><div class="step-line"></div><div class="step-num">2</div><div class="step-content"><div class="step-title lang-pl">Przejdź do zakładki "Nagrywanie"</div><div class="step-title lang-en">Go to the "Recording" tab</div><div class="step-desc lang-pl">Kliknij zakładkę <strong style="color:var(--white)">"Nagrywanie"</strong>. Jeśli nie widzisz Stereo Mix — kliknij PPM w pustym miejscu i zaznacz <strong style="color:var(--white)">"Pokaż wyłączone urządzenia"</strong>.</div><div class="step-desc lang-en">Click the <strong style="color:var(--white)">"Recording"</strong> tab. If Stereo Mix is not visible — right-click on an empty area and check <strong style="color:var(--white)">"Show Disabled Devices"</strong>.</div></div></div>
+    <div class="step reveal"><div class="step-line"></div><div class="step-num">3</div><div class="step-content"><div class="step-title lang-pl">Włącz Stereo Mix</div><div class="step-title lang-en">Enable Stereo Mix</div><div class="step-desc lang-pl">Kliknij PPM na <strong style="color:var(--white)">"Stereo Mix"</strong> → <strong style="color:var(--white)">"Włącz"</strong>, potem <strong style="color:var(--white)">"Ustaw jako domyślne urządzenie"</strong>.</div><div class="step-desc lang-en">Right-click <strong style="color:var(--white)">"Stereo Mix"</strong> → <strong style="color:var(--white)">"Enable"</strong>, then <strong style="color:var(--white)">"Set as Default Device"</strong>.</div></div></div>
+    <div class="step reveal"><div class="step-line"></div><div class="step-num">4</div><div class="step-content"><div class="step-title lang-pl">Wybierz w asystencie</div><div class="step-title lang-en">Select in the assistant</div><div class="step-desc lang-pl">W rozwijanej liście urządzeń audio wybierz <strong style="color:var(--g)">"Stereo Mix"</strong>. Asystent będzie słyszał wszystko przez głośniki.</div><div class="step-desc lang-en">In the audio device dropdown, select <strong style="color:var(--g)">"Stereo Mix"</strong>. The assistant will hear everything through your speakers.</div></div></div>
+    <div class="step reveal"><div class="step-num">5</div><div class="step-content"><div class="step-title lang-pl">Nie masz Stereo Mix? Użyj VB-Cable</div><div class="step-title lang-en">No Stereo Mix? Use VB-Cable</div><div class="step-desc lang-pl">Pobierz darmowy <strong style="color:var(--white)">VB-Cable</strong> ze strony <a href="https://vb-audio.com/Cable/" target="_blank" rel="noopener" style="color:var(--g);text-decoration:none;">vb-audio.com/Cable</a> — instaluje się w 30 sekund.</div><div class="step-desc lang-en">Download free <strong style="color:var(--white)">VB-Cable</strong> from <a href="https://vb-audio.com/Cable/" target="_blank" rel="noopener" style="color:var(--g);text-decoration:none;">vb-audio.com/Cable</a> — installs in 30 seconds.</div></div></div>
   </div>
 </section>
 
@@ -608,42 +433,32 @@
   <h2 class="section-title reveal lang-en">Frequently asked questions</h2>
   <div class="faq reveal">
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
-        <span><span class="lang-pl">Czy rekruter zobaczy że używam programu?</span><span class="lang-en">Will the recruiter see that I'm using the app?</span></span>
-        <span class="faq-icon">+</span>
-      </div>
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false"><span><span class="lang-pl">Czy mogę przetestować za darmo?</span><span class="lang-en">Can I try it for free?</span></span><span class="faq-icon">+</span></div>
+      <div class="faq-a lang-pl">Tak! Po rejestracji otrzymujesz 3 darmowe pytania AI bez podawania karty kredytowej. Wystarczy założyć konto na asystent-rozmowy.pl/rejestracja i pobrać aplikację.</div>
+      <div class="faq-a lang-en">Yes! After signing up you get 3 free AI questions with no credit card required. Just create an account and download the app.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false"><span><span class="lang-pl">Czy rekruter zobaczy że używam programu?</span><span class="lang-en">Will the recruiter see that I'm using the app?</span></span><span class="faq-icon">+</span></div>
       <div class="faq-a lang-pl">Nie. Program działa lokalnie jako oddzielne okno. Rekruter widzi tylko Ciebie przez kamerę.</div>
       <div class="faq-a lang-en">No. The app runs locally as a separate window. The recruiter only sees you through the camera.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
-        <span><span class="lang-pl">Czy działa z Teams i Zoom?</span><span class="lang-en">Does it work with Teams and Zoom?</span></span>
-        <span class="faq-icon">+</span>
-      </div>
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false"><span><span class="lang-pl">Czy działa z Teams i Zoom?</span><span class="lang-en">Does it work with Teams and Zoom?</span></span><span class="faq-icon">+</span></div>
       <div class="faq-a lang-pl">Tak. Działa z każdą aplikacją do rozmów wideo. Możesz nagrywać mikrofon lub dźwięk systemowy (Stereo Mix).</div>
       <div class="faq-a lang-en">Yes. It works with any video call application. You can record your microphone or system audio (Stereo Mix).</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
-        <span><span class="lang-pl">Czy moje rozmowy są zapisywane?</span><span class="lang-en">Are my conversations recorded?</span></span>
-        <span class="faq-icon">+</span>
-      </div>
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false"><span><span class="lang-pl">Czy moje rozmowy są zapisywane?</span><span class="lang-en">Are my conversations recorded?</span></span><span class="faq-icon">+</span></div>
       <div class="faq-a lang-pl">Nie. Audio jest wysyłane do Whisper tylko do transkrypcji i nie jest przechowywane.</div>
       <div class="faq-a lang-en">No. Audio is sent to Whisper only for transcription and is not stored anywhere.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
-        <span><span class="lang-pl">Czy potrzebuję instalować Python?</span><span class="lang-en">Do I need to install Python?</span></span>
-        <span class="faq-icon">+</span>
-      </div>
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false"><span><span class="lang-pl">Czy potrzebuję instalować Python?</span><span class="lang-en">Do I need to install Python?</span></span><span class="faq-icon">+</span></div>
       <div class="faq-a lang-pl">Nie. Dostajesz jeden plik .exe który działa od razu. Bez instalacji, bez konfiguracji.</div>
       <div class="faq-a lang-en">No. You get a single .exe file that works immediately. No installation, no configuration.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
-        <span><span class="lang-pl">Jak anulować subskrypcję?</span><span class="lang-en">How to cancel the subscription?</span></span>
-        <span class="faq-icon">+</span>
-      </div>
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false"><span><span class="lang-pl">Jak anulować subskrypcję?</span><span class="lang-en">How to cancel the subscription?</span></span><span class="faq-icon">+</span></div>
       <div class="faq-a lang-pl">Możesz anulować w dowolnym momencie przez Stripe (link w emailu). Dostęp zostaje do końca opłaconego okresu.</div>
       <div class="faq-a lang-en">You can cancel at any time via Stripe (link in the confirmation email). Access remains until the end of the paid period.</div>
     </div>
@@ -652,10 +467,7 @@
 
 <!-- FOOTER -->
 <footer id="download">
-  <div class="footer-logo">
-    <div class="nav-dot" style="width:8px;height:8px;"></div>
-    Asystent<span>-Rozmowy AI</span>
-  </div>
+  <div class="footer-logo"><div class="nav-dot" style="width:8px;height:8px;"></div>Asystent<span>-Rozmowy AI</span></div>
   <div style="display:flex;gap:20px;flex-wrap:wrap;">
     <a href="/regulamin/" style="color:var(--dim);text-decoration:none;font-size:12px;"><span class="lang-pl">Regulamin</span><span class="lang-en">Terms of Service</span></a>
     <a href="/polityka-prywatnosci/" style="color:var(--dim);text-decoration:none;font-size:12px;"><span class="lang-pl">Polityka prywatności</span><span class="lang-en">Privacy Policy</span></a>
@@ -680,32 +492,24 @@
       nav.classList.remove('open');
     }
   });
-
   function setLang(lang) {
-    // Zmień klasę na body zamiast ukrywać poszczególne elementy
     document.body.className = 'lang-' + lang;
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
     });
-    // Zapisz w localStorage
     localStorage.setItem('lang', lang);
   }
-
   function toggleFaq(el) {
     el.parentElement.classList.toggle('open');
   }
-
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Załaduj język z localStorage lub domyślny PL
   const savedLang = localStorage.getItem('lang') || 'pl';
   setLang(savedLang);
 </script>
-
 </body>
 </html>
