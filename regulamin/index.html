@@ -4,59 +4,64 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Regulamin — Asystent-Rozmowy AI</title>
-<meta name="description" content="Regulamin korzystania z usługi Asystent-Rozmowy AI.">
-<meta name="robots" content="noindex, follow">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root { --g:#2EE89A; --dark:#06070D; --dark2:#0C0D1A; --white:#ECEEFF; --gray:#8890BB; --dim:#3E4266; --border:#1E2040; }
+  :root { --g:#2EE89A; --dark:#06070D; --dark2:#0C0D1A; --white:#ECEEFF; --gray:#A0AACC; --dim:#3E4266; --border:#1E2040; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:var(--dark); color:var(--white); font-family:'DM Sans',sans-serif; line-height:1.7; }
-  nav { display:flex; align-items:center; justify-content:space-between; padding:18px 48px; background:rgba(6,7,13,0.95); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
-  .nav-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:16px; text-decoration:none; color:var(--white); display:flex; align-items:center; gap:8px; }
-  .nav-dot { width:8px; height:8px; background:var(--g); border-radius:2px; box-shadow:0 0 10px var(--g); }
-  .nav-logo span { color:var(--g); }
-  .back-link { color:var(--gray); text-decoration:none; font-size:14px; transition:color 0.2s; }
-  .back-link:hover { color:var(--g); }
-  .doc { max-width:760px; margin:0 auto; padding:64px 24px 100px; }
-  .doc-label { font-size:12px; font-weight:600; color:var(--g); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
-  .doc h1 { font-family:'Syne',sans-serif; font-weight:800; font-size:36px; margin-bottom:8px; }
-  .doc-date { color:var(--dim); font-size:13px; margin-bottom:48px; padding-bottom:24px; border-bottom:1px solid var(--border); }
-  .doc h2 { font-family:'Syne',sans-serif; font-weight:700; font-size:20px; color:var(--white); margin:40px 0 12px; }
-  .doc p { color:var(--gray); font-size:15px; margin-bottom:14px; }
-  .doc ul { padding-left:20px; margin-bottom:14px; }
-  .doc li { color:var(--gray); font-size:15px; margin-bottom:6px; line-height:1.65; }
-  .doc strong { color:var(--white); }
-  .doc a { color:var(--g); text-decoration:none; }
-  .doc a:hover { text-decoration:underline; }
-  .highlight { background:var(--dark2); border:1px solid var(--border); border-left:3px solid var(--g); border-radius:8px; padding:16px 20px; margin:20px 0; }
-  .highlight p { margin:0; color:var(--white); font-size:14px; }
+  body { background:var(--dark); color:var(--white); font-family:'Plus Jakarta Sans',sans-serif; line-height:1.7; }
+  .nav { display:flex; align-items:center; justify-content:space-between; padding:20px 48px; border-bottom:1px solid var(--border); position:sticky; top:0; background:rgba(6,7,13,0.95); backdrop-filter:blur(20px); z-index:10; }
+  .logo { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--white); font-weight:800; font-size:18px; }
+  .logo-dot { width:10px; height:10px; background:var(--g); border-radius:3px; box-shadow:0 0 16px var(--g); }
+  .logo span { color:var(--g); }
+  .back { color:var(--gray); text-decoration:none; font-size:14px; }
+  .back:hover { color:var(--g); }
+  .container { max-width:720px; margin:0 auto; padding:60px 24px 80px; }
+  .label { font-size:12px; font-weight:600; color:var(--g); letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+  h1 { font-weight:800; font-size:36px; margin-bottom:8px; }
+  .updated { color:var(--dim); font-size:13px; margin-bottom:48px; }
+  h2 { font-size:18px; font-weight:700; color:var(--white); margin:36px 0 12px; padding-top:8px; border-top:1px solid var(--border); }
+  p { color:var(--gray); font-size:15px; margin-bottom:14px; }
+  ul { color:var(--gray); font-size:15px; margin:0 0 14px 20px; }
+  ul li { margin-bottom:6px; }
+  strong { color:var(--white); }
+  a { color:var(--g); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .highlight { background:rgba(46,232,154,0.06); border:1px solid rgba(46,232,154,0.2); border-radius:12px; padding:16px 20px; margin:16px 0; }
   footer { border-top:1px solid var(--border); padding:32px 48px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
-  .footer-logo { font-family:'Syne',sans-serif; font-weight:700; font-size:15px; display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--white); }
+  .footer-logo { font-weight:700; font-size:16px; display:flex; align-items:center; gap:8px; }
   .footer-logo span { color:var(--g); }
   .footer-copy { color:var(--dim); font-size:13px; }
-  @media (max-width:768px) { nav { padding:14px 20px; } .doc { padding:40px 16px 60px; } footer { padding:24px 20px; flex-direction:column; } }
+  @media(max-width:600px){ .nav{padding:14px 20px;} footer{padding:24px 20px;flex-direction:column;} }
 </style>
 </head>
 <body>
+
 <nav>
-  <a href="/" class="nav-logo"><div class="nav-dot"></div>Asystent<span>-Rozmowy AI</span></a>
-  <a href="/" class="back-link">← Strona główna</a>
+  <a href="/" class="logo"><div class="logo-dot"></div>Asystent<span>-Rozmowy AI</span></a>
+  <a href="/" class="back">← Strona główna</a>
 </nav>
-<div class="doc">
-  <div class="doc-label">Dokument prawny</div>
+
+<div class="container">
+  <p class="label">Dokument prawny</p>
   <h1>Regulamin usługi</h1>
-  <div class="doc-date">Ostatnia aktualizacja: 16 maja 2026</div>
+  <p class="updated">Ostatnia aktualizacja: 23 maja 2026</p>
+
   <h2>§1. Postanowienia ogólne</h2>
-  <p>Niniejszy Regulamin określa zasady korzystania z usługi <strong>Asystent-Rozmowy AI</strong> (dalej: "Usługa"), świadczonej przez właściciela serwisu asystent-rozmowy.pl (dalej: "Usługodawca").</p>
+  <p>Niniejszy Regulamin określa zasady korzystania z usługi Asystent-Rozmowy AI (dalej: "Usługa"), świadczonej przez właściciela serwisu asystent-rozmowy.pl (dalej: "Usługodawca").</p>
   <p>Korzystając z Usługi, Użytkownik akceptuje niniejszy Regulamin w całości. Jeśli nie zgadzasz się z warunkami, nie korzystaj z Usługi.</p>
+
   <h2>§2. Definicje</h2>
   <ul>
     <li><strong>Usługa</strong> — aplikacja Asystent-Rozmowy AI dostępna jako plik .exe dla systemu Windows</li>
     <li><strong>Użytkownik</strong> — osoba fizyczna korzystająca z Usługi po zaakceptowaniu Regulaminu</li>
     <li><strong>Konto</strong> — indywidualne konto Użytkownika z dostępem do Usługi</li>
-    <li><strong>Subskrypcja</strong> — płatny dostęp do pełnych funkcji Usługi</li>
+    <li><strong>Plan Darmowy</strong> — bezpłatny dostęp do Usługi z limitem 3 pytań AI</li>
+    <li><strong>Subskrypcja Pro</strong> — płatny dostęp do pełnych funkcji Usługi bez limitu pytań</li>
   </ul>
+
   <h2>§3. Rejestracja i konto</h2>
   <p>Korzystanie z Usługi wymaga założenia konta z podaniem adresu email i hasła. Użytkownik zobowiązuje się do:</p>
   <ul>
@@ -66,58 +71,83 @@
     <li>Korzystania z Usługi wyłącznie na własny użytek</li>
   </ul>
   <p>Jedno konto może być używane tylko przez jedną osobę. Udostępnianie konta osobom trzecim jest zabronione.</p>
-  <h2>§4. Subskrypcja i płatności</h2>
-  <p>Usługa dostępna jest w modelu subskrypcyjnym:</p>
-  <ul>
-    <li><strong>Plan Pro</strong> — 49 PLN brutto miesięcznie</li>
-    <li>Subskrypcja odnawia się automatycznie co miesiąc</li>
-    <li>Płatności obsługiwane są przez Stripe — bezpieczny operator płatności</li>
-    <li>Faktura VAT dostępna na życzenie</li>
-  </ul>
+
+  <h2>§4. Plany i płatności</h2>
   <div class="highlight">
-    <p>Anulowanie subskrypcji możliwe w dowolnym momencie przez link w emailu potwierdzającym lub przez kontakt z Usługodawcą. Dostęp pozostaje aktywny do końca opłaconego okresu.</p>
+    <p><strong>Plan Darmowy (Free)</strong> — bezpłatny, bez karty kredytowej</p>
+    <ul>
+      <li>3 pytania AI w ramach konta (limit stały, nie odnawia się)</li>
+      <li>Dostępny po rejestracji na asystent-rozmowy.pl/rejestracja</li>
+      <li>Po wyczerpaniu limitu wymagane przejście na Plan Pro</li>
+    </ul>
   </div>
+  <div class="highlight">
+    <p><strong>Plan Pro</strong> — płatny</p>
+    <ul>
+      <li>49 PLN brutto miesięcznie lub 490 PLN brutto rocznie</li>
+      <li>Nieograniczona liczba pytań AI</li>
+      <li>Subskrypcja odnawia się automatycznie</li>
+      <li>Płatności obsługiwane przez <a href="https://stripe.com/privacy" target="_blank">Stripe</a></li>
+      <li>Faktura VAT dostępna na życzenie</li>
+      <li>Anulowanie możliwe w dowolnym momencie przez link w emailu lub kontakt z Usługodawcą</li>
+    </ul>
+  </div>
+  <p>Dostęp Pro pozostaje aktywny do końca opłaconego okresu po anulowaniu.</p>
+
   <h2>§5. Prawo do odstąpienia od umowy</h2>
-  <p>Zgodnie z ustawą o prawach konsumenta, Użytkownik ma prawo odstąpić od umowy w ciągu <strong>14 dni</strong> od zawarcia umowy bez podania przyczyny.</p>
-  <p>Prawo do odstąpienia nie przysługuje jeśli Użytkownik rozpoczął korzystanie z Usługi przed upływem 14-dniowego terminu i wyraził na to zgodę.</p>
-  <p>Aby odstąpić od umowy, skontaktuj się z nami: <a href="mailto:kontakt@asystent-rozmowy.pl">kontakt@asystent-rozmowy.pl</a></p>
+  <p>Zgodnie z ustawą o prawach konsumenta, Użytkownik ma prawo odstąpić od umowy subskrypcji Pro w ciągu <strong>14 dni</strong> od jej zawarcia bez podania przyczyny.</p>
+  <p>Prawo do odstąpienia <strong>nie przysługuje</strong> jeśli Użytkownik rozpoczął korzystanie z Usługi Pro przed upływem 14-dniowego terminu i wyraził na to zgodę.</p>
+  <p>Plan Darmowy jest bezpłatny — prawo do odstąpienia nie dotyczy bezpłatnych usług.</p>
+  <p>Aby odstąpić od umowy, skontaktuj się: <a href="mailto:kontakt@asystent-rozmowy.pl">kontakt@asystent-rozmowy.pl</a></p>
+
   <h2>§6. Zasady korzystania</h2>
   <p>Użytkownik zobowiązuje się do korzystania z Usługi zgodnie z prawem i niniejszym Regulaminem. Zabrania się:</p>
   <ul>
     <li>Używania Usługi do celów nielegalnych lub nieetycznych</li>
     <li>Odsprzedaży lub udostępniania Usługi osobom trzecim</li>
     <li>Próby złamania zabezpieczeń systemu</li>
+    <li>Tworzenia wielu kont w celu obejścia limitu darmowych pytań</li>
     <li>Automatycznego korzystania z API bez zgody Usługodawcy</li>
     <li>Naruszania praw autorskich lub własności intelektualnej</li>
   </ul>
+
   <h2>§7. Przetwarzanie danych przez AI</h2>
   <p>Usługa wykorzystuje modele AI firm trzecich:</p>
   <ul>
     <li><strong>OpenAI Whisper</strong> — transkrypcja nagrań głosowych</li>
     <li><strong>OpenAI GPT-4o</strong> — generowanie odpowiedzi</li>
   </ul>
-  <p>Nagrania audio są przesyłane do OpenAI wyłącznie w celu transkrypcji i nie są przez nas przechowywane. Usługodawca nie ponosi odpowiedzialności za przetwarzanie danych przez OpenAI zgodnie z ich własną polityką prywatności.</p>
+  <p>Nagrania audio są przesyłane do OpenAI wyłącznie w celu transkrypcji i nie są przez nas przechowywane. Usługodawca nie ponosi odpowiedzialności za przetwarzanie danych przez OpenAI zgodnie z ich własną <a href="https://openai.com/privacy" target="_blank">polityką prywatności</a>.</p>
+
   <h2>§8. Ograniczenie odpowiedzialności</h2>
   <p>Usługa ma charakter pomocniczy i nie zastępuje własnego przygotowania do rozmowy kwalifikacyjnej. Usługodawca nie gwarantuje skuteczności Usługi ani powodzenia w rekrutacji.</p>
-  <p>Odpowiedzialność Usługodawcy jest ograniczona do wysokości opłat wniesionych przez Użytkownika w ostatnim miesiącu.</p>
+  <p>Odpowiedzialność Usługodawcy jest ograniczona do wysokości opłat wniesionych przez Użytkownika w ostatnim miesiącu. Dla Planu Darmowego odpowiedzialność Usługodawcy jest wyłączona.</p>
+
   <h2>§9. Dostępność usługi</h2>
   <p>Usługodawca dąży do zapewnienia ciągłości działania Usługi, jednak nie gwarantuje 100% dostępności. Planowane przerwy techniczne będą komunikowane z wyprzedzeniem.</p>
+
   <h2>§10. Zmiany Regulaminu</h2>
-  <p>Usługodawca zastrzega prawo do zmiany Regulaminu. O zmianach Użytkownicy będą informowani drogą emailową z co najmniej 14-dniowym wyprzedzeniem. Kontynuowanie korzystania z Usługi po tym terminie oznacza akceptację zmian.</p>
+  <p>Usługodawca zastrzega prawo do zmiany Regulaminu. O zmianach Użytkownicy będą informowani drogą emailową z co najmniej <strong>14-dniowym</strong> wyprzedzeniem. Kontynuowanie korzystania z Usługi po tym terminie oznacza akceptację zmian.</p>
+
   <h2>§11. Kontakt i reklamacje</h2>
   <p>W sprawach związanych z Usługą, reklamacjami lub anulowaniem subskrypcji prosimy o kontakt:</p>
   <ul>
     <li>Email: <a href="mailto:kontakt@asystent-rozmowy.pl">kontakt@asystent-rozmowy.pl</a></li>
   </ul>
   <p>Reklamacje rozpatrywane są w ciągu 14 dni roboczych.</p>
+
   <h2>§12. Postanowienia końcowe</h2>
   <p>W sprawach nieuregulowanych niniejszym Regulaminem zastosowanie mają przepisy prawa polskiego, w szczególności Kodeksu Cywilnego oraz ustawy o prawach konsumenta.</p>
   <p>Sądem właściwym do rozstrzygania sporów jest sąd właściwy dla siedziby Usługodawcy, z zastrzeżeniem przepisów o ochronie konsumentów.</p>
 </div>
+
 <footer>
-  <a href="/" class="footer-logo"><div class="nav-dot" style="width:7px;height:7px;"></div>Asystent<span>-Rozmowy AI</span></a>
-  <a href="/polityka-prywatnosci/" style="color:var(--gray);text-decoration:none;font-size:13px;">Polityka prywatności</a>
+  <div class="footer-logo"><div class="logo-dot" style="width:8px;height:8px;"></div>Asystent<span>-Rozmowy AI</span></div>
+  <div style="display:flex;gap:20px;">
+    <a href="/polityka-prywatnosci/" style="color:var(--dim);font-size:13px;">Polityka prywatności</a>
+  </div>
   <div class="footer-copy">© 2026 Asystent-Rozmowy AI</div>
 </footer>
+
 </body>
 </html>
