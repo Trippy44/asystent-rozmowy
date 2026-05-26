@@ -293,29 +293,96 @@
 
   <div class="hero-mockup">
     <div class="mockup-glow"></div>
-    <div class="mockup-window">
+    <div class="mockup-window" style="width:300px;">
+      <!-- Titlebar -->
       <div class="mockup-titlebar">
         <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
         <span class="mockup-title">Asystent-Rozmowy AI</span>
       </div>
-      <div class="mockup-body">
-        <div class="mockup-header">
-          <div class="mockup-logo"><div class="mockup-logo-dot"></div>Asystent<span>-Rozmowy AI</span></div>
-          <div class="mockup-pill"><div class="mockup-pill-dot"></div>ON</div>
+      <!-- Header -->
+      <div style="padding:10px 12px 8px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1E2440;">
+        <div style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#2EE89A;">
+          <div style="width:7px;height:7px;background:#2EE89A;border-radius:2px;box-shadow:0 0 8px #2EE89A;"></div>
+          Asystent-Rozmowy AI
         </div>
-        <div class="mockup-user-bubble">
-          <div class="mockup-user-tag">🎙 REKRUTER</div>
-          <div class="mockup-user-text">Jakie są Pana mocne strony?</div>
-        </div>
-        <div class="mockup-bubble">
-          <div class="mockup-bubble-tag">✦ AI</div>
-          <div class="mockup-bubble-text"><strong>Odpowiedź:</strong> Moją główną mocną stroną jest połączenie analitycznego myślenia z umiejętnościami komunikacyjnymi. W poprzedniej roli zredukowałem czas wdrożeń o 35%.</div>
-        </div>
-        <div class="mockup-input">
-          <div class="mockup-field">Wpisz pytanie lub naciśnij SPACJA...</div>
-          <div class="mockup-mic">🎙</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;font-weight:700;color:#0A0D16;background:#2EE89A;border-radius:20px;padding:3px 8px;">
+          <div style="width:4px;height:4px;background:#0A0D16;border-radius:50%;"></div>
+          LIVE
         </div>
       </div>
+      <!-- Device pills row - 1:1 z aplikacją -->
+      <div style="padding:8px 10px;display:flex;gap:5px;align-items:center;border-bottom:1px solid #1E2440;">
+        <!-- 1: Pin - kółko z linią w dół, zielony -->
+        <div style="background:#0D2218;border:1.5px solid #1C3828;border-radius:50%;width:28px;height:28px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2EE89A" stroke-width="2.2" stroke-linecap="round">
+            <circle cx="12" cy="8" r="4" fill="#2EE89A" stroke="none"/>
+            <line x1="12" y1="12" x2="12" y2="20"/>
+          </svg>
+        </div>
+        <!-- 2: Miks stereo - zielona pill aktywna -->
+        <div style="background:#0D2218;border:1.5px solid #1C3828;border-radius:16px;padding:4px 8px;font-size:8px;color:#2EE89A;font-weight:700;white-space:nowrap;">Miks stereo</div>
+        <!-- 3: CV - ciemna pill -->
+        <div style="background:#111827;border:1.5px solid #1E2440;border-radius:16px;padding:4px 8px;font-size:8px;color:#8890BB;font-weight:600;">CV</div>
+        <!-- 4: Księżyc - ciemny okrągły, szara ikona -->
+        <div style="background:#111827;border:1.5px solid #1E2440;border-radius:50%;width:28px;height:28px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#8890BB" stroke="none">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </div>
+        <!-- 5: Help ? - ciemny okrągły -->
+        <div style="background:#111827;border:1.5px solid #1E2440;border-radius:50%;width:28px;height:28px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#8890BB;font-weight:800;">?</div>
+        <!-- 6: Wyloguj - prostokąt ze strzałką SVG -->
+        <div style="background:#111827;border:1.5px solid #1E2440;border-radius:50%;width:28px;height:28px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8890BB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </div>
+        <!-- 7: Kosz/usuń historię - ciemny okrągły -->
+        <div style="background:#111827;border:1.5px solid #1E2440;border-radius:50%;width:28px;height:28px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8890BB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+            <path d="M10 11v6M14 11v6"/>
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+          </svg>
+        </div>
+      </div>
+      <!-- PRO badge -->
+      <div style="padding:8px 10px;border-bottom:1px solid #1E2440;">
+        <div style="background:#0D2218;border:1.5px solid #1C3828;border-radius:14px;padding:6px 0;text-align:center;font-size:10px;font-weight:700;color:#2EE89A;">PRO — test</div>
+      </div>
+      <!-- Welcome cards -->
+      <div style="padding:8px 10px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid #1E2440;">
+        <div style="font-size:12px;font-weight:700;color:#E0E6FF;text-align:center;margin-bottom:2px;">Asystent gotowy</div>
+        <div style="background:#0A1C11;border:1px solid #163023;border-radius:10px;padding:8px 10px;">
+          <div style="font-size:10px;font-weight:700;color:#2EE89A;">Stereo Mix aktywny</div>
+          <div style="font-size:9px;color:#6070A0;margin-top:2px;">Słyszysz głos rekrutera</div>
+        </div>
+        <div style="background:#111827;border:1px solid #1E2440;border-radius:10px;padding:8px 10px;">
+          <div style="font-size:10px;font-weight:600;color:#8890BB;">Brak CV</div>
+          <div style="font-size:9px;color:#4A5580;margin-top:2px;">Kliknij CV w nagłówku aby wczytać PDF</div>
+        </div>
+        <div style="background:#111827;border:1px solid #1E2440;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:8px;">
+          <div style="background:#0D2218;border:1.5px solid #1C3828;border-radius:8px;padding:3px 8px;font-size:9px;font-weight:700;color:#2EE89A;">SPACJA</div>
+          <div style="font-size:9px;color:#8890BB;">= trzymaj / puść mikrofon</div>
+        </div>
+      </div>
+      <!-- Quick pills -->
+      <div style="padding:8px 10px;display:flex;gap:5px;border-bottom:1px solid #1E2440;">
+        <div style="background:#111827;border:1px solid #1E2440;border-radius:16px;padding:5px 10px;font-size:9px;color:#8890BB;">Mocne strony</div>
+        <div style="background:#111827;border:1px solid #1E2440;border-radius:16px;padding:5px 10px;font-size:9px;color:#8890BB;">STAR</div>
+        <div style="background:#111827;border:1px solid #1E2440;border-radius:16px;padding:5px 10px;font-size:9px;color:#8890BB;">Dlaczego tu?</div>
+      </div>
+      <!-- Input -->
+      <div style="padding:8px 10px;display:flex;gap:6px;align-items:center;">
+        <div style="flex:1;background:#111827;border:1px solid #1E2440;border-radius:20px;padding:7px 12px;font-size:9px;color:#3E4266;">Wpisz pytanie lub SPACJA...</div>
+        <div style="background:#111827;border:1px solid #1E2440;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#8890BB;">↑</div>
+        <div style="background:#111827;border:1px solid #1E2440;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#2EE89A;">🎤</div>
+      </div>
+      <!-- Bottom hint -->
+      <div style="padding:0 10px 8px;text-align:center;font-size:8px;color:#2E3550;">SPACJA = mic · Enter = wyślij</div>
     </div>
   </div>
 </section>
