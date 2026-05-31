@@ -59,7 +59,8 @@
   html { scroll-behavior: smooth; }
   body { background: var(--dark); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(6,7,13,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-weight: 800; font-size: 18px; display: flex; align-items: center; gap: 10px; }
+  .nav-logo { font-weight: 800; font-size: 18px; display: flex; align-items: center; gap: 0; }
+  .nav-logo .nav-dot { margin-right: 10px; flex-shrink:0; }
   .nav-dot { width: 10px; height: 10px; background: var(--g); border-radius: 3px; box-shadow: 0 0 16px var(--g); }
   .nav-logo span { color: var(--g); }
   .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
@@ -211,8 +212,7 @@
 
 <nav>
   <div class="nav-logo">
-    <div class="nav-dot"></div>
-    Asystent<span>-Rozmowy AI</span>
+    <div class="nav-dot"></div><span style="color:var(--white);">Asystent</span><span style="color:var(--g);">-Rozmowy AI</span>
   </div>
   <ul class="nav-links">
     <li><a href="#features"><span class="lang-pl">Funkcje</span><span class="lang-en">Features</span></a></li>
