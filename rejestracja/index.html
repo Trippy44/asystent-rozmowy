@@ -180,9 +180,12 @@
 
   <!-- Register form -->
   <div id="form-screen">
-    <div class="free-badge">
+    <div class="free-badge" id="free-badge">
       <div class="badge-dot"></div>
       Darmowe konto — bez karty kredytowej
+    </div>
+    <div id="ref-badge" style="display:none;background:rgba(46,232,154,0.12);border:1px solid rgba(46,232,154,0.3);border-radius:100px;padding:6px 16px;font-size:12px;color:var(--g);font-weight:600;margin-bottom:12px;text-align:center;">
+      🤝 Rejestrujesz się przez polecenie
     </div>
 
     <h1>Załóż konto za darmo</h1>
@@ -257,6 +260,10 @@
 <script>
 const BACKEND = "https://liquid-backend.onrender.com";
 
+// Czytaj kod polecający z URL (?ref=jan)
+const urlParams = new URLSearchParams(window.location.search);
+const refCode = urlParams.get('ref') || '';
+
 async function register() {
   const name     = document.getElementById("name").value.trim();
   const email    = document.getElementById("email").value.trim();
@@ -287,7 +294,7 @@ async function register() {
     const res = await fetch(BACKEND + "/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, name: name || null })
+      body: JSON.stringify({ email, password, name: name || null, referral_code: refCode || null })
     });
     const data = await res.json();
 
@@ -306,6 +313,11 @@ async function register() {
     btn.disabled = false;
     btn.textContent = "Zarejestruj się za darmo →";
   }
+}
+
+// Show ref badge if ref code present
+if (refCode) {
+  document.getElementById('ref-badge').style.display = 'block';
 }
 
 // Enter key support
