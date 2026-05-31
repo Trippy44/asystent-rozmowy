@@ -13,6 +13,7 @@
 <meta property="og:url" content="https://asystent-rozmowy.pl/blog/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
 <style>
   :root {
     --g:#2EE89A; --dark:#06070D; --dark2:#0C0D1A; --dark3:#181A30;
@@ -20,164 +21,43 @@
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:var(--dark); color:var(--white); font-family:'DM Sans',sans-serif; line-height:1.7; }
-
-  nav {
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 48px;
-    background:rgba(6,7,13,0.95);
-    border-bottom:1px solid var(--border);
-    position:sticky; top:0; z-index:100;
-  }
-  .nav-logo {
-    font-family:'Syne',sans-serif; font-weight:800; font-size:16px;
-    text-decoration:none; color:var(--white);
-    display:flex; align-items:center; gap:8px;
-  }
+  nav { display:flex; align-items:center; justify-content:space-between; padding:18px 48px; background:rgba(6,7,13,0.95); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
+  .nav-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:16px; text-decoration:none; color:var(--white); display:flex; align-items:center; gap:8px; }
   .nav-dot { width:8px; height:8px; background:var(--g); border-radius:2px; box-shadow:0 0 10px var(--g); }
   .nav-logo span { color:var(--g); }
-  .back-link {
-    color:var(--gray); text-decoration:none; font-size:14px;
-    display:flex; align-items:center; gap:6px; transition:color 0.2s;
-  }
+  .back-link { color:var(--gray); text-decoration:none; font-size:14px; display:flex; align-items:center; gap:6px; transition:color 0.2s; }
   .back-link:hover { color:var(--g); }
-
-  /* HEADER */
-  .blog-header {
-    max-width:900px; margin:0 auto;
-    padding:72px 24px 48px;
-    border-bottom:1px solid var(--border);
-  }
-  .blog-label {
-    font-size:12px; font-weight:600; color:var(--g);
-    letter-spacing:2px; text-transform:uppercase;
-    margin-bottom:16px;
-  }
-  .blog-title {
-    font-family:'Syne',sans-serif; font-weight:800;
-    font-size:clamp(32px,5vw,52px);
-    line-height:1.1; margin-bottom:16px;
-  }
-  .blog-sub {
-    color:var(--gray); font-size:18px; line-height:1.6;
-    max-width:560px;
-  }
-
-  /* ARTICLES GRID */
-  .blog-body {
-    max-width:900px; margin:0 auto;
-    padding:56px 24px 100px;
-  }
-
-  .articles-grid {
-    display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-    gap:24px;
-  }
-
-  .article-card {
-    background:var(--dark2);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:32px;
-    text-decoration:none;
-    color:var(--white);
-    transition:all 0.3s;
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-    position:relative;
-    overflow:hidden;
-  }
-
-  .article-card::before {
-    content:'';
-    position:absolute; top:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg,transparent,var(--g),transparent);
-    opacity:0; transition:opacity 0.3s;
-  }
-
-  .article-card:hover {
-    border-color:rgba(46,232,154,0.35);
-    transform:translateY(-4px);
-    box-shadow:0 20px 60px rgba(0,0,0,0.4);
-  }
+  .blog-header { max-width:900px; margin:0 auto; padding:72px 24px 48px; border-bottom:1px solid var(--border); }
+  .blog-label { font-size:12px; font-weight:600; color:var(--g); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+  .blog-title { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(32px,5vw,52px); line-height:1.1; margin-bottom:16px; }
+  .blog-sub { color:var(--gray); font-size:18px; line-height:1.6; max-width:560px; }
+  .blog-body { max-width:900px; margin:0 auto; padding:56px 24px 100px; }
+  .articles-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(380px,1fr)); gap:24px; }
+  .article-card { background:var(--dark2); border:1px solid var(--border); border-radius:20px; padding:32px; text-decoration:none; color:var(--white); transition:all 0.3s; display:flex; flex-direction:column; gap:16px; position:relative; overflow:hidden; }
+  .article-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--g),transparent); opacity:0; transition:opacity 0.3s; }
+  .article-card:hover { border-color:rgba(46,232,154,0.35); transform:translateY(-4px); box-shadow:0 20px 60px rgba(0,0,0,0.4); }
   .article-card:hover::before { opacity:1; }
-
-  .card-tag {
-    display:inline-flex; align-items:center;
-    background:rgba(46,232,154,0.1);
-    border:1px solid rgba(46,232,154,0.2);
-    color:var(--g); font-size:11px; font-weight:600;
-    padding:3px 10px; border-radius:20px;
-    width:fit-content;
-  }
-
-  .card-title {
-    font-family:'Syne',sans-serif;
-    font-weight:700; font-size:20px;
-    line-height:1.3; color:var(--white);
-  }
-
-  .card-desc {
-    color:var(--gray); font-size:14px;
-    line-height:1.65; flex:1;
-  }
-
-  .card-meta {
-    display:flex; align-items:center; justify-content:space-between;
-    padding-top:16px;
-    border-top:1px solid var(--border);
-  }
-
+  .card-tag { display:inline-flex; align-items:center; background:rgba(46,232,154,0.1); border:1px solid rgba(46,232,154,0.2); color:var(--g); font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; width:fit-content; }
+  .card-title { font-family:'Syne',sans-serif; font-weight:700; font-size:20px; line-height:1.3; color:var(--white); }
+  .card-desc { color:var(--gray); font-size:14px; line-height:1.65; flex:1; }
+  .card-meta { display:flex; align-items:center; justify-content:space-between; padding-top:16px; border-top:1px solid var(--border); }
   .card-date { color:var(--dim); font-size:12px; }
-
-  .card-read {
-    color:var(--g); font-size:13px; font-weight:600;
-    display:flex; align-items:center; gap:4px;
-    transition:gap 0.2s;
-  }
+  .card-read { color:var(--g); font-size:13px; font-weight:600; display:flex; align-items:center; gap:4px; transition:gap 0.2s; }
   .article-card:hover .card-read { gap:8px; }
-
-  /* COMING SOON card */
-  .article-card.coming-soon {
-    opacity:0.45;
-    pointer-events:none;
-    border-style:dashed;
-  }
-  .coming-badge {
-    background:var(--dark3);
-    border:1px solid var(--border);
-    color:var(--dim); font-size:11px; font-weight:600;
-    padding:3px 10px; border-radius:20px;
-    width:fit-content;
-  }
-
-  /* FOOTER */
-  footer {
-    border-top:1px solid var(--border);
-    padding:32px 48px;
-    display:flex; align-items:center; justify-content:space-between;
-    flex-wrap:wrap; gap:16px;
-  }
-  .footer-logo {
-    font-family:'Syne',sans-serif; font-weight:700; font-size:15px;
-    display:flex; align-items:center; gap:8px;
-    text-decoration:none; color:var(--white);
-  }
+  .article-card.coming-soon { opacity:0.45; pointer-events:none; border-style:dashed; }
+  .coming-badge { background:var(--dark3); border:1px solid var(--border); color:var(--dim); font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; width:fit-content; }
+  footer { border-top:1px solid var(--border); padding:32px 48px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+  .footer-logo { font-family:'Syne',sans-serif; font-weight:700; font-size:15px; display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--white); }
   .footer-logo span { color:var(--g); }
   .footer-copy { color:var(--dim); font-size:13px; }
   footer a { color:var(--gray); text-decoration:none; font-size:13px; }
   footer a:hover { color:var(--g); }
-
-  @media (max-width:768px) {
+  @media(max-width:768px) {
     nav { padding:12px 20px; }
-    .nav-logo { font-size:14px; }
     .blog-header { padding:48px 16px 32px; }
-    .blog-sub { font-size:16px; }
     .blog-body { padding:40px 16px 60px; }
     .articles-grid { grid-template-columns:1fr; gap:16px; }
     .article-card { padding:24px; }
-    .card-title { font-size:18px; }
     footer { padding:24px 20px; flex-direction:column; }
   }
 </style>
@@ -185,10 +65,7 @@
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">
-    <div class="nav-dot"></div>
-    Asystent<span>-Rozmowy AI</span>
-  </a>
+  <a href="/" class="nav-logo"><div class="nav-dot"></div>Asystent<span>-Rozmowy AI</span></a>
   <a href="/" class="back-link">← Strona główna</a>
 </nav>
 
@@ -207,6 +84,16 @@
       <div class="card-desc">Rekruterzy zadają te same pytania na większości rozmów. Gotowe schematy odpowiedzi na pytania o mocne strony, słabości, oczekiwania finansowe i motywację.</div>
       <div class="card-meta">
         <span class="card-date">Maj 2026 · 12 min czytania</span>
+        <span class="card-read">Czytaj →</span>
+      </div>
+    </a>
+
+    <a href="/blog/rozmowa-kwalifikacyjna-pytania/" class="article-card">
+      <div class="card-tag">Rekrutacja</div>
+      <div class="card-title">Rozmowa kwalifikacyjna — pytania i odpowiedzi. Kompletny przewodnik 2026</div>
+      <div class="card-desc">Najczęstsze pytania na rozmowie kwalifikacyjnej z gotowymi odpowiedziami po polsku i angielsku. Przygotuj się w 15 minut.</div>
+      <div class="card-meta">
+        <span class="card-date">Maj 2026 · 8 min czytania</span>
         <span class="card-read">Czytaj →</span>
       </div>
     </a>
@@ -235,10 +122,7 @@
 </div>
 
 <footer>
-  <a href="/" class="footer-logo">
-    <div class="nav-dot" style="width:7px;height:7px;"></div>
-    Asystent<span>-Rozmowy AI</span>
-  </a>
+  <a href="/" class="footer-logo"><div class="nav-dot" style="width:7px;height:7px;"></div>Asystent<span>-Rozmowy AI</span></a>
   <div style="display:flex;gap:20px;">
     <a href="/regulamin/">Regulamin</a>
     <a href="/polityka-prywatnosci/">Polityka prywatności</a>
